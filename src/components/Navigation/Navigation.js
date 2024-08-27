@@ -35,11 +35,12 @@ const navigation = [
   { name: 'Orders', href: '/orders', icon: ClipboardDocumentListIcon },
   // { name: 'Add Products', href: '/products', icon: FolderIcon },
   { name: 'Users', href: '/user', icon: UsersIcon },
+  { name: 'Customer', href: '/Customer', icon: UsersIcon },
   // { name: 'Products', href: '/product', icon: FolderIcon },
   { name: 'Stores', href: '/Stores', icon: ShoppingBagIcon },
   { name: 'Reports', href: '/Reports', icon: FolderIcon },
   { name: 'Payments', href: '/Payments', icon: CreditCardIcon  },
-
+  { name: 'Roles', href: '/User-roleform', icon: CreditCardIcon  },
 
 ];
 

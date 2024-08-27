@@ -104,6 +104,11 @@ import AddOrders from './components/Orders/AddOrders';
 import Stores from './components/Stores/Stores'
 import Reports from './components/Reports/Reports';
 import Payments from './components/Payments/Payments';
+import Customer from './components/Customer/Customer';
+import UserRole from './components/User/UserRole';
+import Userform from './components/User/Userform';
+import Storeform from './components/Stores/Storeform';
+// import { UserProvider } from './Context/userContext';
 
 function App() {
   const location = useLocation();
@@ -117,16 +122,22 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/product" element={<ProductPage />} />
           <Route path="/products" element={<AddProduct />} />
-          <Route path="/user" element={<User />} />
+
+          {/* <Route path="/user" element={  <UserProvider> <User /> </UserProvider>} /> */}
+
+          <Route path="/user" element={  <User />} />
+          <Route path="/Customer" element={<Customer />} />
           <Route path="/Orders" element={<Orders />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/add-product" element={<AddEditProduct />} />
           <Route path="/AddOrders" element={<AddOrders />} />
-          <Route path="/Stores" element={<Stores/>} />
+          {/* <Route path="/Stores" element={<Stores/>} /> */}
           <Route path="/Reports" element={<Reports/>} />
           <Route path="/Payments" element={<Payments/>} />
+          <Route path="/User-roleform" element={<UserRole/>} />
 
-
+          <Route path="/Userform" element={<Userform/>} />
+          {/* <Route path="/Storeform" element={<Storeform/>} /> */}
         </Routes>
       </main>
     </div>
