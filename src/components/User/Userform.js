@@ -3499,17 +3499,13 @@
 // export default Userform;
 
 
-import React, { useState,useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { useLocation } from 'react-router-dom';
 
 function Userform() {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [role, setRole] = useState('');
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [users, setUsers] = useState([]);
+
   const location = useLocation();
   const [formData, setFormData] = useState(location.state?.userDetails || {});
   const navigate = useNavigate();
@@ -3522,18 +3518,6 @@ function Userform() {
     PhoneNumber: "", 
     Gender: "",
   });
-  // useEffect(() => {
-  //   if (location.state?.userDetails) {
-  //     setFormData(location.state.userDetails);
-  //   }
-  // }, [location.state]);
-
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData((prevData) => ({ ...prevData, [name]: value }));
-  // };
-  // const navigate = useNavigate(); // Initialize useNavigate
-  // // Handle form changes
   const handleFormChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -3558,7 +3542,6 @@ function Userform() {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     let valid = true;
-    let newErrors = {};
     if (valid) {
       try {
         console.log("Registered details:", formData);

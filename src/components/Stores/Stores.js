@@ -981,7 +981,6 @@ import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import PropTypes from 'prop-types'; // For prop types validation
-
 import LastPageIcon from '@mui/icons-material/LastPage';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
@@ -1074,255 +1073,13 @@ TablePaginationActions.propTypes = {
  
 export default function Stores() {
   
-//   const [editingIndex, setEditingIndex] = useState(null);
-//   const [page, setPage] = useState(0);
-//   const [rowsPerPage, setRowsPerPage] = useState(5);
-//   const [searchName, setSearchName] = useState("");
-//   const [searchEmail, setSearchEmail] = useState("");
-
-//   const [stores, setStores] = useState([]);
-
-
-//   const navigate = useNavigate();
-
-//   // Handle form changes
-//   const handleFormChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData({
-//       ...formData,
-//       [name]: value,
-//     });
-//   };
-
-//   // Handle image upload
-//   const handleImageChange = (e) => {
-//     const file = e.target.files[0];
-//     if (file) {
-//       const reader = new FileReader();
-//       reader.onloadend = () => {
-//         setFormData({
-//           ...formData,
-//           profileImg: reader.result,
-//         });
-//       };
-//       reader.readAsDataURL(file);
-//     }
-//   };
-
-// const [formData, setFormData] = useState({
-//   TenantID: 1,
-//   StoreName:"",
-//   Email: "",
-//   Password: "", 
-//   PhoneNumber: "", 
-//   Gender:"",
-
-// });
-
-
-// // Your getAllUsers function
-// const getAllStores = async () => {
-//   try {
-//     const response = await axios.get(
-//       "https://imlystudios-backend-mqg4.onrender.com/api/stores/getAllStores"
-//     );
-//     console.log("Stores retrieved successfully:", response.data);
-//     return response.data.Stores; // Return the list of users
-//   } catch (error) {
-//     console.error("Error fetching users:", error);
-//     throw error;
-//   }
-// };
-
-// useEffect(() => {
-//   const fetchStores = async () => {
-//     try {
-//       const usersData = await getAllStores();
-//       setStores(usersData);
-//     } catch (error) {
-//       console.error("Failed to fetch users", error);
-//     }
-//   };
-//   fetchStores();
-// }, []);
-
-//  // Handle pagination
-//  const handleChangePage = (event, newPage) => {
-//   setPage(newPage);
-// };
-
-// const handleChangeRowsPerPage = (event) => {
-//   setRowsPerPage(parseInt(event.target.value, 10));
-//   setPage(0);
-// };
-
-// // Calculate pagination data
-// const paginatedStores = Stores.slice(
-//   page * rowsPerPage,
-//   page * rowsPerPage + rowsPerPage
-// );
-// const emptyRows = rowsPerPage - paginatedStores.length;
-
-// const getStoreById = async (storeId) => {
-//   try {
-//     const response = await axios.get(
-//       `https://imlystudios-backend-mqg4.onrender.com/api/stores/getStoreById/${storeId}`
-//     );
-//     console.log("Store retrieved successfully:", response.data);
-//     return response.data;
-//   } catch (error) {
-//     console.error("Error fetching stores:", error);
-//     throw error;
-//   }
-// };
-// // API Call for deleting a user
-// const deleteStoreById = async (storeId) => {
-//   try {
-//     const response = await axios.delete(
-//       `https://imlystudios-backend-mqg4.onrender.com/api/stores/updateStore/${storeId}`
-//     );
-//     console.log("Store deleted successfully:", response.data);
-//     return response.data; // Return the response data
-//   } catch (error) {
-//     console.error("Error deleting user:", error);
-//     throw error;
-//   }
-// };
-// // API Call for updating a user
-// const updateStoreById = async (storeId, updatedData) => {
-//   try {
-//     const response = await axios.put(
-//       `https://imlystudios-backend-mqg4.onrender.com/api/users/updateUser/${storeId}`,
-//       updatedData
-//     );
-//     console.log("User updated successfully:", response.data);
-//     return response.data; // Return the response data
-//   } catch (error) {
-//     console.error("Error updating user:", error);
-//     throw error;
-//   }
-// };
-
-
-// // Handle edit button click
-// const handleEditClick = async (index) => {
-//   const realIndex = page * rowsPerPage + index;
-//   const storeId = stores[realIndex].storeID;
-
-//   try {
-//     const storeDetails = await getStoreById(storeId);
-    
-//     // Populate form with fetched user details
-//       // Use context to set form data
-//       // const { setFormData } = UserContext();
-//     setFormData(storeDetails);
-//     setEditingIndex(realIndex);
-//     navigate('/Storeform');
-    
-//     // The updatedData should be obtained after the form submission
-//     // await updateUserById(userId, updatedData); 
-//   } catch (error) {
-//     console.error("Error fetching user details:", error);
-//   }
-// };
-
-// // Handle save or update action in your form
-// const handleSaveChanges = async (updatedData) => {
-//   const userId = stores[editingIndex].StoreID;
-
-//   try {
-//     await updateStoreById(storeId, updatedData); // Update the user via API
-    
-//     // Update the user in the local state
-//     const updatedStores = stores.map((store, index) =>
-//       index === editingIndex ? { ...store, ...updatedData } : store
-//     );
-//     setUsers(updatedStores);
-//     // setIsFormVisible(false); // Hide the form after saving changes
-//   } catch (error) {
-//     console.error("Error updating user:", error);
-//   }
-// };
-
-
-
-// // Handle delete button click
-// const handleDeleteClick = async (index) => {
-//   const realIndex = page * rowsPerPage + index;
-//   const userId = users[realIndex].StoreID;
-
-//   try {
-//     await deleteStoreById(storeId); // Delete the user via API
-    
-//     // Remove the user from the local state
-//     const updatedUsers = users.filter((_, i) => i !== realIndex);
-//     setStores(updatedStores);
-
-//     // Adjust the page if necessary
-//     if (updatedUsers.length <= page * rowsPerPage && page > 0) {
-//       setPage(page - 1);
-//     }
-//   } catch (error) {
-//     console.error("Error deleting user:", error);
-//   }
-// };
-
-// // Fetch users on component mount
-// useEffect(() => {
-//   const fetchStores = async () => {
-//     try {
-//       const userList = await getAllStores();
-//       setStores(storeList);
-//     } catch (error) {
-//       console.error("Error fetching stores:", error);
-//     }
-//   };
-
-//   fetchStores();
-// }, []);
-
-//   // Handle cancel button click
-//   const handleCancel = () => {
-//     setFormData(null);
-//     setEditingIndex(null);
-//     // setIsFormVisible(false);
-//   };
-
-//   //   // Example if using useState
-// const [paginatedPeople, setPaginatedPeople] = useState([]);
-  
-//   const exportToExcel = (data, fileName) => {
-//     const worksheet = XLSX.utils.json_to_sheet(data);
-//     const workbook = XLSX.utils.book_new();
-//     XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-//     XLSX.writeFile(workbook, `${fileName}.xlsx`);
-//   };
-
-//   const handleExportUsersData = () => {
-//     exportToExcel("Customers");
-//   };
-
-
-
-//   useEffect(() => {
-//     setPaginatedPeople(
-//       users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-//     );
-//   }, [users, page, rowsPerPage]);
-  
-
-
-//     const handleAddUserClick = () => {
-//       navigate('/userform'); // Navigate to the UserForm route
-//     };
-
 const [editingIndex, setEditingIndex] = useState(null);
 const [page, setPage] = useState(0);
 const [rowsPerPage, setRowsPerPage] = useState(5);
 const [searchName, setSearchName] = useState("");
 const [searchEmail, setSearchEmail] = useState("");
+
 const [stores, setStores] = useState([]);
-const storesLength = stores?.length || 0;
 
 
 const navigate = useNavigate();
@@ -1336,20 +1093,6 @@ const handleFormChange = (e) => {
   });
 };
 
-// Handle image upload
-const handleImageChange = (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setFormData({
-        ...formData,
-        profileImg: reader.result,
-      });
-    };
-    reader.readAsDataURL(file);
-  }
-};
 
 const [formData, setFormData] = useState({
   TenantID: 1,
@@ -1396,18 +1139,12 @@ const handleChangeRowsPerPage = (event) => {
   setPage(0);
 };
 
-// // Calculate pagination data
-// const paginatedStores = stores.slice(
-//   page * rowsPerPage,
-//   page * rowsPerPage + rowsPerPage
-// );
 
-const paginatedStores = stores?.slice(
+const paginatedStores = stores.slice(
   page * rowsPerPage,
   page * rowsPerPage + rowsPerPage
-) || [];
+);
 const emptyRows = rowsPerPage - paginatedStores.length;
-
 // Get store by ID
 const getStoreById = async (storeId) => {
   try {
@@ -1415,6 +1152,7 @@ const getStoreById = async (storeId) => {
       `https://imlystudios-backend-mqg4.onrender.com/api/stores/getStoreById/${storeId}`
     );
     console.log("Store retrieved successfully:", response.data);
+    return response.data.Stores || [];
     return response.data;
   } catch (error) {
     console.error("Error fetching store:", error);
@@ -1454,7 +1192,7 @@ const updateStoreById = async (storeId, updatedData) => {
 // Handle edit button click
 const handleEditClick = async (index) => {
   const realIndex = page * rowsPerPage + index;
-  const storeId = stores[realIndex].storeID;
+  const storeId = stores[realIndex].StoreID;
 
   try {
     const storeDetails = await getStoreById(storeId);
@@ -1503,20 +1241,32 @@ const handleDeleteClick = async (index) => {
     console.error("Error deleting store:", error);
   }
 };
-
-// Fetch stores on component mount
+// useEffect(() => {
+//   const fetchStores = async () => {
+//     try {
+//       const storesData = await getAllStores();
+//       setStores(Array.isArray(storesData) ? storesData : []); // Ensure it's an array
+//     } catch (error) {
+//       console.error("Failed to fetch stores", error);
+//       setStores([]); // Fallback to an empty array in case of error
+//     }
+//   };
+//   fetchStores();
+// }, []);
+// Fetch users on component mount
 useEffect(() => {
   const fetchStores = async () => {
     try {
       const storeList = await getAllStores();
       setStores(storeList);
     } catch (error) {
-      console.error("Error fetching stores:", error);
+      console.error("Error fetching users:", error);
     }
   };
 
   fetchStores();
 }, []);
+
 
 // Handle cancel button click
 const handleCancel = () => {
@@ -1525,7 +1275,7 @@ const handleCancel = () => {
 };
 
 // Example if using useState
-const [paginatedPeople, setPaginatedPeople] = useState([]);
+const [ PaginatedPeople, setPaginatedPeople] = useState([]);
 
 // Export to Excel
 const exportToExcel = (data, fileName) => {
@@ -1536,8 +1286,10 @@ const exportToExcel = (data, fileName) => {
 };
 
 const handleExportUsersData = () => {
-  exportToExcel(stores, "Stores");
+  exportToExcel("Stores");
 };
+
+
 
 useEffect(() => {
   setPaginatedPeople(
@@ -1614,7 +1366,7 @@ const handleAddUserClick = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {paginatedPeople.map((person, index) => (
+                  {paginatedStores.map((person, index) => (
                     <StyledTableRow key={index}>
                       <StyledTableCell>{person.name}</StyledTableCell>
                       <StyledTableCell>{person.Email}</StyledTableCell>
@@ -1672,6 +1424,7 @@ const handleAddUserClick = () => {
               ActionsComponent={TablePaginationActions}
             />
           </TableRow>
+          
                 </TableFooter>
               </Table>
             </TableContainer>

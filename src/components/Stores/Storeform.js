@@ -4,17 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Storeform() {
 
-  const [editingIndex, setEditingIndex] = useState(null);
-  const [isFormVisible, setIsFormVisible] = useState(false);
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [searchName, setSearchName] = useState('');
-  const [searchEmail, setSearchEmail] = useState('');
-
-const [role, setRole] = useState('');
-const [showDropdown, setShowDropdown] = useState(false);
-const [users, setUsers] = useState([]);
-// const location = useLocation();
+// // const location = useLocation();
 // const [formData, setFormData] = useState(location.state?.userDetails || {});
 const navigate = useNavigate();
 const [formData, setFormData] = useState({
@@ -26,17 +16,7 @@ const [formData, setFormData] = useState({
   PhoneNumber: "", 
   Gender: "",
 });
-// useEffect(() => {
-//   if (location.state?.userDetails) {
-//     setFormData(location.state.userDetails);
-//   }
-// }, [location.state]);
 
-// const handleChange = (e) => {
-//   const { name, value } = e.target;
-//   setFormData((prevData) => ({ ...prevData, [name]: value }));
-// };
-// const navigate = useNavigate(); // Initialize useNavigate
 // // Handle form changes
 const handleFormChange = (e) => {
   const { name, value } = e.target;
@@ -45,20 +25,7 @@ const handleFormChange = (e) => {
     [name]: value,
   });
 };
-// Handle image upload
-const handleImageChange = (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setFormData({
-        ...formData,
-        profileImg: reader.result,
-      });
-    };
-    reader.readAsDataURL(file);
-  }
-};
+
 const handleFormSubmit = async (event) => {
   event.preventDefault();
   let valid = true;

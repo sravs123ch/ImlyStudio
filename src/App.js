@@ -108,7 +108,7 @@ import Customer from './components/Customer/Customer';
 import UserRole from './components/User/UserRole';
 import Userform from './components/User/Userform';
 import Storeform from './components/Stores/Storeform';
-// import { UserProvider } from './Context/userContext';
+import { UserProvider } from './Context/userContext';
 
 function App() {
   const location = useLocation();
@@ -118,6 +118,7 @@ function App() {
     <div className="App flex flex-col min-h-screen">
       {showNavigation && <Navigation />}
       <main className="flex-grow p-0gi bg-gray-100">
+        <UserProvider>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/product" element={<ProductPage />} />
@@ -139,6 +140,7 @@ function App() {
           <Route path="/Userform" element={<Userform/>} />
           {/* <Route path="/Storeform" element={<Storeform/>} /> */}
         </Routes>
+          </UserProvider>
       </main>
     </div>
   );

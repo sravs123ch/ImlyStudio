@@ -5302,7 +5302,7 @@
 // export default User;
 
 
-import React, { useState,useEffect} from "react";
+import React, { useState,useEffect, useContext} from "react";
 import { useNavigate } from 'react-router-dom';
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -5330,7 +5330,7 @@ import { FaFilter } from 'react-icons/fa';
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
 import { IoIosSearch } from "react-icons/io";
 import axios from "axios";
-// import {UserContext } from '../../Context/userContext';
+import {UseContext } from '../../Context/userContext';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -5549,28 +5549,51 @@ const updateUserById = async (userId, updatedData) => {
   }
 };
 
+// const handleEditClick = async (index) => {
+//   const realIndex = page * rowsPerPage + index;
+//   const userId = users[realIndex].UserID;
 
-// Handle edit button click
+//   try {
+//     // Fetch user details by ID using the context function
+//     const userDetails = await getUserById(userId);
+    
+//     console.log("Fetched user details:", userDetails); // Check if data is correct
+//     setFormData(userDetails); // Set the data in context
+    
+//     // Optionally, set the index if you want to track which row is being edited
+//     setEditingIndex(realIndex);
+
+//     // Navigate to the user form
+//     navigate('/userform');
+//   } catch (error) {
+//     console.error("Error fetching user details:", error);
+//   }
+// };
+
+const {formData2, setformData2 } = useContext(UseContext);
+
 const handleEditClick = async (index) => {
   const realIndex = page * rowsPerPage + index;
   const userId = users[realIndex].UserID;
 
   try {
     const userDetails = await getUserById(userId);
+    console.log("Fetched user details:", userDetails); 
     
-    // Populate form with fetched user details
-      // Use context to set form data
-      // const { setFormData } = UserContext();
-    setFormData(userDetails);
-    setEditingIndex(realIndex);
+    // Navigate to the user form
     navigate('/userform');
-    
-    // The updatedData should be obtained after the form submission
-    // await updateUserById(userId, updatedData); 
+    // Ensure the form data is set before navigating
+    setformData2(userDetails);
+
+    // Optionally wait for state to update (this is rare but might help in some cases)
+    await new Promise(resolve => setTimeout(resolve, 0)); 
+
   } catch (error) {
     console.error("Error fetching user details:", error);
   }
 };
+
+
 
 // Handle save or update action in your form
 const handleSaveChanges = async (updatedData) => {
