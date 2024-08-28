@@ -5457,15 +5457,27 @@ function User() {
 
 const [formData, setFormData] = useState({
   TenantID: 1,
+  AddressID: "",
+  EmployeeID:121,
   FirstName: "",
   LastName: "",
   Email: "",
   Password: "", 
   PhoneNumber: "", 
-  Gender:"",
+  Gender: "",
+  AddressLine1: "",
+  AddressLine2: "",
+  CityID: "",
+  StateID: "",
+  CoutntryID:5,
+  ZipCode: "",
+  RoleID: "",
+  ProfileImg: "",
+  Comments: "",
+  CreatedBy:"sravani",
+  UpdatedBy:"sravani"
 
 });
-// const { formData, setFormData } = UserContext(UserContext);
 
 // Your getAllUsers function
 const getAllUsers = async () => {
@@ -5667,12 +5679,26 @@ const [paginatedPeople, setPaginatedPeople] = useState([]);
       // Clear form data before navigating to the user form
       setFormData({
         TenantID: 1,
+        AddressID: "",
+        EmployeeID:121,
         FirstName: "",
+        RoleID: '',
         LastName: "",
         Email: "",
         Password: "", 
         PhoneNumber: "", 
         Gender: "",
+        AddressLine1: "",
+        AddressLine2: "",
+        CityID: 0,
+        StateID: "",
+        CountryID:5,
+        ZipCode: "",
+        ProfileImg: "",
+        Comments: "",
+        CreatedBy:"sravani",
+        UpdatedBy:"sravani"
+    
       });
     
       // Navigate to the UserForm route
@@ -5751,23 +5777,23 @@ const [paginatedPeople, setPaginatedPeople] = useState([]);
               </StyledTableCell>
               <StyledTableCell>{person.Email}</StyledTableCell>
               <StyledTableCell>{person.PhoneNumber}</StyledTableCell>
-              <StyledTableCell>
-                {person.addressLine1}
-                {person.addressLine2 && `, ${person.addressLine2}`}
+              <StyledTableCell>{person.AddressID}
+                {/* {person.AddressLine1}
+                {person.AddressLine2 && `, ${person.AddressLine2}`}
                 <br />
-                {person.city}, {person.state}, {person.zipCode}
+                {person.City}, {person.State}, {person.ZipCode} */}
               </StyledTableCell>
               <StyledTableCell>
                 <span
                   className={`inline-block px-3 py-2 text-xs font-semibold rounded-full ${
-                    person.gender === "Male"
+                    person.Gender === "Male"
                       ? "bg-green-100 text-green-800 shadow-md"
                       : person.gender === "Female"
                       ? "bg-pink-100 text-pink-800 shadow-md"
                       : "bg-gray-100 text-gray-800 shadow-md"
                   }`}
                 >
-                  {person.gender}
+                  {person.Gender}
                 </span>
               </StyledTableCell>
               <StyledTableCell>
