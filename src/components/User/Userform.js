@@ -4669,6 +4669,397 @@
 //   const handleCancel = () => {
 //     navigate("/user");
 //   };
+// import React, { useState, useEffect, useContext } from 'react';
+// import axios from 'axios';
+// import { useNavigate, useLocation } from 'react-router-dom';
+// import { UserContext } from '../../Context/userContext';
+
+// function Userform() {
+//   const navigate = useNavigate();
+//   const location = useLocation();
+//   const { userDetails } = useContext(UserContext);
+
+//   // Determine if in edit mode (only if user data exists)
+//   const isEditMode = Boolean(location.state?.userDetails?.user || userDetails?.user);
+
+//   const [formData, setFormData] = useState({
+//     FirstName: "",
+//     LastName: "",
+//     Email: "",
+//     PhoneNumber: "",
+//     Gender: "",
+//     addressLine1: "",
+//     addressLine2: "",
+//     city: "",
+//     state: "",
+//     zipCode: "",
+//     roleId: "",
+//     profileImg: "",
+//     comments: ""
+//   });
+
+//   const [loading, setLoading] = useState(false);
+//   const [error, setError] = useState("");
+
+//   useEffect(() => {
+//     if (isEditMode) {
+//       const user = location.state?.userDetails?.user || userDetails?.user;
+//       setFormData({
+//         FirstName: user.FirstName || "",
+//         LastName: user.LastName || "",
+//         Email: user.Email || "",
+//         PhoneNumber: user.PhoneNumber || "",
+//         Gender: user.Gender || "",
+//         addressLine1: user.addressLine1 || "",
+//         addressLine2: user.addressLine2 || "",
+//         city: user.city || "",
+//         state: user.state || "",
+//         zipCode: user.zipCode || "",
+//         roleId: user.roleId || "",
+//         profileImg: user.profileImg || "",
+//         comments: user.comments || ""
+//       });
+//     } else {
+//       // Clear form data if in add mode
+//       setFormData({
+//         FirstName: "",
+//         LastName: "",
+//         Email: "",
+//         PhoneNumber: "",
+//         Gender: "",
+//         addressLine1: "",
+//         addressLine2: "",
+//         city: "",
+//         state: "",
+//         zipCode: "",
+//         roleId: "",
+//         profileImg: "",
+//         comments: ""
+//       });
+//     }
+//   }, [isEditMode, location.state?.userDetails?.user, userDetails?.user]);
+
+//   const handleFormChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData({
+//       ...formData,
+//       [name]: value,
+//     });
+//   };
+
+//   const handleImageChange = (e) => {
+//     const file = e.target.files[0];
+//     if (file) {
+//       const reader = new FileReader();
+//       reader.onloadend = () => {
+//         setFormData({
+//           ...formData,
+//           profileImg: reader.result,
+//         });
+//       };
+//       reader.readAsDataURL(file);
+//     }
+//   };
+
+//   const handleFormSubmit = async (event) => {
+//     event.preventDefault();
+//     setLoading(true);
+//     setError("");
+//     try {
+//       const url = isEditMode 
+//         ? "https://imlystudios-backend-mqg4.onrender.com/api/users/updateUser" 
+//         : "https://imlystudios-backend-mqg4.onrender.com/api/users/createUser";
+        
+//       const response = await axios.post(url, formData);
+//       console.log("Submission successful:", response.data);
+//       navigate("/user");
+//     } catch (error) {
+//       setError("Submission failed. Please try again.");
+//       console.error("Submission failed:", error);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const handleCancel = () => {
+//     navigate("/user");
+//   };
+
+//    return (
+//     <div className="px-4 sm:px-6 lg:px-8 pt-4 ml-10 lg:ml-72 w-auto">
+//       <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
+//         <form onSubmit={handleFormSubmit}>
+//           <div className="flex justify-between items-center mb-6">
+//             <h2 className="text-xl font-semibold mb-4 px-24">Users</h2>
+//           </div>
+//           <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8 px-16 md:px-24">
+//             {/* First Name */}
+//             <div className="flex items-center">
+//               <div className="w-full">
+//                 <label htmlFor="FirstName" className="block text-sm font-medium text-gray-700">
+//                   First Name
+//                 </label>
+//                 <input
+//                   type="text"
+//                   id="FirstName"
+//                   name="FirstName"
+//                   value={formData.FirstName || ""}
+//                   onChange={handleFormChange}
+//                   required
+//                   className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//                 />
+//               </div>
+//             </div>
+
+//             {/* Address Line 1 */}
+//             <div className="flex items-center">
+//               <div className="w-full">
+//                 <label htmlFor="addressLine1" className="block text-sm font-medium text-gray-700">
+//                   Address Line 1
+//                 </label>
+//                 <input
+//                   type="text"
+//                   id="addressLine1"
+//                   name="addressLine1"
+//                   value={formData.addressLine1 || ""}
+//                   onChange={handleFormChange}
+//                   required
+//                   className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//                 />
+//               </div>
+//             </div>
+
+//             {/* Last Name */}
+//             <div>
+//               <label htmlFor="LastName" className="block text-sm font-medium text-gray-700">
+//                 Last Name
+//               </label>
+//               <input
+//                 type="text"
+//                 id="LastName"
+//                 name="LastName"
+//                 value={formData.LastName || ""}
+//                 onChange={handleFormChange}
+//                 required
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Address Line 2 */}
+//             <div>
+//               <label htmlFor="addressLine2" className="block text-sm font-medium text-gray-700">
+//                 Address Line 2
+//               </label>
+//               <input
+//                 type="text"
+//                 id="addressLine2"
+//                 name="addressLine2"
+//                 value={formData.addressLine2 || ""}
+//                 onChange={handleFormChange}
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Email */}
+//             <div>
+//               <label htmlFor="Email" className="block text-sm font-medium text-gray-700">
+//                 Email
+//               </label>
+//               <input
+//                 type="email"
+//                 id="Email"
+//                 name="Email"
+//                 value={formData.Email || ""}
+//                 onChange={handleFormChange}
+//                 required
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Password */}
+//             <div>
+//               <label htmlFor="Password" className="block text-sm font-medium text-gray-700">
+//                 Password
+//               </label>
+//               <input
+//                 id="Password"
+//                 name="Password"
+//                 type="password"
+//                 value={formData.Password || ""}
+//                 onChange={handleFormChange}
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* City */}
+//             <div>
+//               <label htmlFor="city" className="block text-sm font-medium text-gray-700">
+//                 City
+//               </label>
+//               <input
+//                 type="text"
+//                 id="city"
+//                 name="city"
+//                 value={formData.city || ""}
+//                 onChange={handleFormChange}
+//                 required
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Phone Number */}
+//             <div>
+//               <label htmlFor="PhoneNumber" className="block text-sm font-medium text-gray-700">
+//                 Phone Number
+//               </label>
+//               <input
+//                 type="text"
+//                 id="PhoneNumber"
+//                 name="PhoneNumber"
+//                 value={formData.PhoneNumber || ""}
+//                 onChange={handleFormChange}
+//                 required
+//                 pattern="\d{10}"
+//                 title="Phone Number should be 10 digits."
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* State */}
+//             <div>
+//               <label htmlFor="state" className="block text-sm font-medium text-gray-700">
+//                 State
+//               </label>
+//               <input
+//                 type="text"
+//                 id="state"
+//                 name="state"
+//                 value={formData.state || ""}
+//                 onChange={handleFormChange}
+//                 required
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Gender */}
+//             <div>
+//               <label htmlFor="Gender" className="block text-sm font-medium text-gray-700">
+//                 Gender
+//               </label>
+//               <select
+//                 id="Gender"
+//                 name="Gender"
+//                 value={formData.Gender || ""}
+//                 onChange={handleFormChange}
+//                 required
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               >
+//                 <option value="">Select Gender</option>
+//                 <option value="Male">Male</option>
+//                 <option value="Female">Female</option>
+//                 <option value="Other">Other</option>
+//               </select>
+//             </div>
+
+//             {/* Zip Code */}
+//             <div>
+//               <label htmlFor="zipCode" className="block text-sm font-medium text-gray-700">
+//                 Zip Code
+//               </label>
+//               <input
+//                 type="text"
+//                 id="zipCode"
+//                 name="zipCode"
+//                 value={formData.zipCode || ""}
+//                 onChange={handleFormChange}
+//                 required
+//                 pattern="\d{5}"
+//                 title="Zip Code should be 5 digits."
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Role ID */}
+//             <div>
+//               <label htmlFor="roleId" className="block text-sm font-medium text-gray-700">
+//                 Role ID
+//               </label>
+//               <input
+//                 type="text"
+//                 id="roleId"
+//                 name="roleId"
+//                 value={formData.roleId || ""}
+//                 onChange={handleFormChange}
+//                 required
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Profile Image Upload */}
+//             <div>
+//               <label htmlFor="profileImg" className="block text-sm font-medium text-gray-700">
+//                 Profile Image
+//               </label>
+//               <input
+//                 type="file"
+//                 id="profileImg"
+//                 name="profileImg"
+//                 accept="image/*"
+//                 onChange={handleImageChange || ""}
+//                 className="mt-1 block w-full text-sm text-gray-500"
+//               />
+//               {formData.profileImg && (
+//                 <img
+//                   src={formData.profileImg}
+//                   alt="Profile"
+//                   className="mt-2 h-16 w-16 rounded-full object-cover"
+//                 />
+//               )}
+//             </div>
+
+//             {/* Comments */}
+//             <div className="col-span-1">
+//               <label htmlFor="comments" className="block text-sm font-medium text-gray-700">
+//                 Comments
+//               </label>
+//               <textarea
+//                 id="comments"
+//                 name="comments"
+//                 value={formData.comments || ""}
+//                 onChange={handleFormChange}
+//                 rows={4}
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+//           </div>
+
+//           {/* Buttons */}
+//           <div className="flex justify-center space-x-4 mt-8">
+//             <button
+//               type="submit"
+//               className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+//             >
+// {/* {location.state?.userDetails ? "Update" : "Submit"} */}
+// {location.state?.userDetails?.user ? "Update" : "Submit"}
+
+//             </button>
+//             <button
+//               type="button"
+//               onClick={handleCancel}
+//               className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+//             >
+//               Cancel
+//             </button>
+//           </div>
+//         </form>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default Userform;
+
+
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -4703,24 +5094,7 @@ function Userform() {
 
   useEffect(() => {
     if (isEditMode) {
-      const user = location.state?.userDetails?.user || userDetails?.user;
-      setFormData({
-        FirstName: user.FirstName || "",
-        LastName: user.LastName || "",
-        Email: user.Email || "",
-        PhoneNumber: user.PhoneNumber || "",
-        Gender: user.Gender || "",
-        addressLine1: user.addressLine1 || "",
-        addressLine2: user.addressLine2 || "",
-        city: user.city || "",
-        state: user.state || "",
-        zipCode: user.zipCode || "",
-        roleId: user.roleId || "",
-        profileImg: user.profileImg || "",
-        comments: user.comments || ""
-      });
-    } else {
-      // Clear form data if in add mode
+      // Clear form data if in edit mode
       setFormData({
         FirstName: "",
         LastName: "",
@@ -4735,6 +5109,30 @@ function Userform() {
         roleId: "",
         profileImg: "",
         comments: ""
+      });
+    }
+  }, [isEditMode]);
+
+  useEffect(() => {
+    if (!isEditMode) return;
+    
+    // If in edit mode, set form data based on user details
+    const user = location.state?.userDetails?.user || userDetails?.user;
+    if (user) {
+      setFormData({
+        FirstName: user.FirstName || "",
+        LastName: user.LastName || "",
+        Email: user.Email || "",
+        PhoneNumber: user.PhoneNumber || "",
+        Gender: user.Gender || "",
+        addressLine1: user.addressLine1 || "",
+        addressLine2: user.addressLine2 || "",
+        city: user.city || "",
+        state: user.state || "",
+        zipCode: user.zipCode || "",
+        roleId: user.roleId || "",
+        profileImg: user.profileImg || "",
+        comments: user.comments || ""
       });
     }
   }, [isEditMode, location.state?.userDetails?.user, userDetails?.user]);
@@ -4785,7 +5183,7 @@ function Userform() {
     navigate("/user");
   };
 
-   return (
+  return (
     <div className="px-4 sm:px-6 lg:px-8 pt-4 ml-10 lg:ml-72 w-auto">
       <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
         <form onSubmit={handleFormSubmit}>
@@ -4919,8 +5317,6 @@ function Userform() {
                 value={formData.PhoneNumber || ""}
                 onChange={handleFormChange}
                 required
-                pattern="\d{10}"
-                title="Phone Number should be 10 digits."
                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               />
             </div>
@@ -4941,26 +5337,6 @@ function Userform() {
               />
             </div>
 
-            {/* Gender */}
-            <div>
-              <label htmlFor="Gender" className="block text-sm font-medium text-gray-700">
-                Gender
-              </label>
-              <select
-                id="Gender"
-                name="Gender"
-                value={formData.Gender || ""}
-                onChange={handleFormChange}
-                required
-                className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              >
-                <option value="">Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-
             {/* Zip Code */}
             <div>
               <label htmlFor="zipCode" className="block text-sm font-medium text-gray-700">
@@ -4973,8 +5349,6 @@ function Userform() {
                 value={formData.zipCode || ""}
                 onChange={handleFormChange}
                 required
-                pattern="\d{5}"
-                title="Zip Code should be 5 digits."
                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               />
             </div>
@@ -4995,7 +5369,7 @@ function Userform() {
               />
             </div>
 
-            {/* Profile Image Upload */}
+            {/* Profile Image */}
             <div>
               <label htmlFor="profileImg" className="block text-sm font-medium text-gray-700">
                 Profile Image
@@ -5004,21 +5378,16 @@ function Userform() {
                 type="file"
                 id="profileImg"
                 name="profileImg"
-                accept="image/*"
-                onChange={handleImageChange || ""}
-                className="mt-1 block w-full text-sm text-gray-500"
+                onChange={handleImageChange}
+                className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               />
               {formData.profileImg && (
-                <img
-                  src={formData.profileImg}
-                  alt="Profile"
-                  className="mt-2 h-16 w-16 rounded-full object-cover"
-                />
+                <img src={formData.profileImg} alt="Profile" className="mt-2 w-24 h-24 object-cover rounded-full" />
               )}
             </div>
 
             {/* Comments */}
-            <div className="col-span-1">
+            <div>
               <label htmlFor="comments" className="block text-sm font-medium text-gray-700">
                 Comments
               </label>
@@ -5027,31 +5396,30 @@ function Userform() {
                 name="comments"
                 value={formData.comments || ""}
                 onChange={handleFormChange}
-                rows={4}
                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               />
             </div>
-          </div>
 
-          {/* Buttons */}
-          <div className="flex justify-center space-x-4 mt-8">
-            <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
-{/* {location.state?.userDetails ? "Update" : "Submit"} */}
-{location.state?.userDetails?.user ? "Update" : "Submit"}
-
-            </button>
-            <button
-              type="button"
-              onClick={handleCancel}
-              className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
-              Cancel
-            </button>
+            {/* Submit and Cancel buttons */}
+            <div className="flex justify-between items-center mt-6">
+              <button
+                type="submit"
+                disabled={loading}
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                {loading ? "Submitting..." : isEditMode ? "Update User" : "Create User"}
+              </button>
+              <button
+                type="button"
+                onClick={handleCancel}
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </form>
+        {error && <p className="text-red-600 text-sm mt-4">{error}</p>}
       </div>
     </div>
   );
