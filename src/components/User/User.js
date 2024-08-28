@@ -5330,7 +5330,8 @@ import { FaFilter } from 'react-icons/fa';
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
 import { IoIosSearch } from "react-icons/io";
 import axios from "axios";
-import {UseContext } from '../../Context/userContext';
+// import {UseContext } from '../../Context/userContext';
+import { UserContext } from '../../Context/userContext';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -5472,7 +5473,7 @@ const getAllUsers = async () => {
     const response = await axios.get(
       "https://imlystudios-backend-mqg4.onrender.com/api/users/getAllUsers"
     );
-    console.log("Users retrieved successfully:", response.data);
+    // console.log("Users retrieved successfully:", response.data);
     return response.data.users; // Return the list of users
   } catch (error) {
     console.error("Error fetching users:", error);
@@ -5549,28 +5550,8 @@ const updateUserById = async (userId, updatedData) => {
   }
 };
 
-// const handleEditClick = async (index) => {
-//   const realIndex = page * rowsPerPage + index;
-//   const userId = users[realIndex].UserID;
 
-//   try {
-//     // Fetch user details by ID using the context function
-//     const userDetails = await getUserById(userId);
-    
-//     console.log("Fetched user details:", userDetails); // Check if data is correct
-//     setFormData(userDetails); // Set the data in context
-    
-//     // Optionally, set the index if you want to track which row is being edited
-//     setEditingIndex(realIndex);
-
-//     // Navigate to the user form
-//     navigate('/userform');
-//   } catch (error) {
-//     console.error("Error fetching user details:", error);
-//   }
-// };
-
-const {formData2, setformData2 } = useContext(UseContext);
+const { setUserDetails } = useContext(UserContext);
 
 const handleEditClick = async (index) => {
   const realIndex = page * rowsPerPage + index;
@@ -5578,16 +5559,13 @@ const handleEditClick = async (index) => {
 
   try {
     const userDetails = await getUserById(userId);
-    console.log("Fetched user details:", userDetails); 
-    
-    // Navigate to the user form
+    console.log("Fetched user details:", userDetails);
+
+    // Store userDetails in context
+    setUserDetails(userDetails);
+
+    // Navigate to userform
     navigate('/userform');
-    // Ensure the form data is set before navigating
-    setformData2(userDetails);
-
-    // Optionally wait for state to update (this is rare but might help in some cases)
-    await new Promise(resolve => setTimeout(resolve, 0)); 
-
   } catch (error) {
     console.error("Error fetching user details:", error);
   }
@@ -5681,9 +5659,26 @@ const [paginatedPeople, setPaginatedPeople] = useState([]);
   
 
 
+    // const handleAddUserClick = () => {
+    //   navigate('/userform'); // Navigate to the UserForm route
+    // };
+
     const handleAddUserClick = () => {
-      navigate('/userform'); // Navigate to the UserForm route
+      // Clear form data before navigating to the user form
+      setFormData({
+        TenantID: 1,
+        FirstName: "",
+        LastName: "",
+        Email: "",
+        Password: "", 
+        PhoneNumber: "", 
+        Gender: "",
+      });
+    
+      // Navigate to the UserForm route
+      navigate('/userform');
     };
+    
   return (
     <div className="px-4 sm:px-6 lg:px-8 pt-4 ml-10 lg:ml-72 w-auto">
     

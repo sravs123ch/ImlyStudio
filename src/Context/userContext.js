@@ -12,16 +12,14 @@
 //   );
 // };
 
-
-
-import { createContext, useContext, useState } from 'react';
+import React, { createContext, useState } from 'react';
 
 // Create the context
-export const UseContext = createContext();
+export const UserContext = createContext();
 
 // Provider component
 export const UserProvider = ({ children }) => {
-  const [formData, setFormData] = useState(null);
+  const [userDetails, setUserDetails] = useState(null);
 
   // Function to fetch user data by ID
   const getUserById = async (userId) => {
@@ -31,7 +29,7 @@ export const UserProvider = ({ children }) => {
         throw new Error('Failed to fetch user details');
       }
       const data = await response.json();
-      setFormData(data);  // Set fetched data into the context state
+      setUserDetails(data);  // Set fetched data into the context state
       return data;
     } catch (error) {
       console.error('Error fetching user details:', error);
@@ -40,10 +38,8 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UseContext.Provider value={{ formData, setFormData, getUserById }}>
+    <UserContext.Provider value={{ userDetails, setUserDetails, getUserById }}>
       {children}
-    </UseContext.Provider>
+    </UserContext.Provider>
   );
 };
-
-
