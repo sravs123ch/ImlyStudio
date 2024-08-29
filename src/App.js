@@ -109,6 +109,7 @@ import UserRole from './components/User/UserRole';
 import Userform from './components/User/Userform';
 import Storeform from './components/Stores/Storeform';
 import { UserProvider } from './Context/userContext';
+import {StoreProvider} from './Context/storeContext';
 
 function App() {
   const location = useLocation();
@@ -119,6 +120,7 @@ function App() {
       {showNavigation && <Navigation />}
       <main className="flex-grow p-0gi bg-gray-100">
         <UserProvider>
+          <StoreProvider>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/product" element={<ProductPage />} />
@@ -132,14 +134,15 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/add-product" element={<AddEditProduct />} />
           <Route path="/AddOrders" element={<AddOrders />} />
-          {/* <Route path="/Stores" element={<Stores/>} /> */}
+          <Route path="/Stores" element={<Stores/>} />
           <Route path="/Reports" element={<Reports/>} />
           <Route path="/Payments" element={<Payments/>} />
           <Route path="/User-roleform" element={<UserRole/>} />
 
           <Route path="/Userform" element={<Userform/>} />
-          {/* <Route path="/Storeform" element={<Storeform/>} /> */}
+          <Route path="/Storeform" element={<Storeform/>} />
         </Routes>
+        </StoreProvider>
           </UserProvider>
       </main>
     </div>

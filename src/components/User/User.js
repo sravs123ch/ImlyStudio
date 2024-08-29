@@ -5431,53 +5431,50 @@ function User() {
 
   const navigate = useNavigate();
 
-  // Handle form changes
-  const handleFormChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  // // Handle form changes
+  // const handleFormChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData({
+  //     ...formData,
+  //     [name]: value,
+  //   });
+  // };
 
-  // Handle image upload
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData({
-          ...formData,
-          profileImg: reader.result,
-        });
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+  // // Handle image upload
+  // const handleImageChange = (e) => {
+  //   const file = e.target.files[0];
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       setFormData({
+  //         ...formData,
+  //         profileImg: reader.result,
+  //       });
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // };
 
-const [formData, setFormData] = useState({
-  TenantID: 1,
-  AddressID: "",
-  EmployeeID:121,
-  FirstName: "",
-  LastName: "",
-  Email: "",
-  Password: "", 
-  PhoneNumber: "", 
-  Gender: "",
-  AddressLine1: "",
-  AddressLine2: "",
-  CityID: "",
-  StateID: "",
-  CoutntryID:5,
-  ZipCode: "",
-  RoleID: "",
-  ProfileImg: "",
-  Comments: "",
-  CreatedBy:"sravani",
-  UpdatedBy:"sravani"
-
-});
+// const [formData, setFormData] = useState({
+//   TenantID: 1,
+//   AddressID: "",
+//   EmployeeID:"121",
+//   FirstName: "",
+//   LastName: "",
+//   Email: "",
+//   Password: "", 
+//   PhoneNumber: "", 
+//   Gender: "",
+//   AddressLine1: "",
+//   AddressLine2: "",
+//   CityID: 0,
+//   StateID: 0,
+//   CoutntryID:5,
+//   ZipCode: "",
+//   RoleID: "",
+//   ProfileImg: "",
+//   Comments: "",
+// });
 
 // Your getAllUsers function
 const getAllUsers = async () => {
@@ -5640,12 +5637,12 @@ useEffect(() => {
   fetchUsers();
 }, []);
 
-  // Handle cancel button click
-  const handleCancel = () => {
-    setFormData(null);
-    setEditingIndex(null);
-    // setIsFormVisible(false);
-  };
+  // // Handle cancel button click
+  // const handleCancel = () => {
+  //   setFormData(null);
+  //   setEditingIndex(null);
+  //   // setIsFormVisible(false);
+  // };
 
   //   // Example if using useState
 const [paginatedPeople, setPaginatedPeople] = useState([]);
@@ -5676,30 +5673,28 @@ const [paginatedPeople, setPaginatedPeople] = useState([]);
     // };
 
     const handleAddUserClick = () => {
-      // Clear form data before navigating to the user form
-      setFormData({
-        TenantID: 1,
-        AddressID: "",
-        EmployeeID:121,
-        FirstName: "",
-        RoleID: '',
-        LastName: "",
-        Email: "",
-        Password: "", 
-        PhoneNumber: "", 
-        Gender: "",
-        AddressLine1: "",
-        AddressLine2: "",
-        CityID: 0,
-        StateID: "",
-        CountryID:5,
-        ZipCode: "",
-        ProfileImg: "",
-        Comments: "",
-        CreatedBy:"sravani",
-        UpdatedBy:"sravani"
-    
-      });
+    //   // Clear form data before navigating to the user form
+    //   setFormData({
+    //     TenantID: 1,
+    //     AddressID: "",
+    //     EmployeeID:"121",
+    //     FirstName: "",
+    //     RoleID: '',
+    //     LastName: "",
+    //     Email: "",
+    //     Password: "", 
+    //     PhoneNumber: "", 
+    //     Gender: "",
+    //     AddressLine1: "",
+    //     AddressLine2: "",
+    //     CityID: 0,
+    //     StateID: 0,
+    //     CountryID:5,
+    //     ZipCode: "",
+    //     ProfileImg: "",
+    //     Comments: "",
+        
+    //   });
     
       // Navigate to the UserForm route
       navigate('/userform');
@@ -5786,9 +5781,9 @@ const [paginatedPeople, setPaginatedPeople] = useState([]);
               <StyledTableCell>
                 <span
                   className={`inline-block px-3 py-2 text-xs font-semibold rounded-full ${
-                    person.Gender === "Male"
+                    person.Gender === "M"
                       ? "bg-green-100 text-green-800 shadow-md"
-                      : person.gender === "Female"
+                      : person.Gender === "F"
                       ? "bg-pink-100 text-pink-800 shadow-md"
                       : "bg-gray-100 text-gray-800 shadow-md"
                   }`}

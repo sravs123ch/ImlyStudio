@@ -962,8 +962,483 @@
 // }
 
 
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
+// import { styled } from "@mui/material/styles";
+// import Table from "@mui/material/Table";
+// import TableBody from "@mui/material/TableBody";
+// import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+// import TableContainer from "@mui/material/TableContainer";
+// import TableHead from "@mui/material/TableHead";
+// import TableRow from "@mui/material/TableRow";
+// import Paper from "@mui/material/Paper";
+// import * as XLSX from 'xlsx';
+// import TableFooter from '@mui/material/TableFooter';
+// import TablePagination from '@mui/material/TablePagination';
+// import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
+// import { FaTable, FaPlus } from 'react-icons/fa';
+// import { IoIosSearch } from "react-icons/io";
+// import { useTheme } from '@mui/material/styles';
+// import Box from '@mui/material/Box';
+// import IconButton from '@mui/material/IconButton';
+// import PropTypes from 'prop-types'; // For prop types validation
+// import LastPageIcon from '@mui/icons-material/LastPage';
+// import FirstPageIcon from '@mui/icons-material/FirstPage';
+// import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+// import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+// import axios from "axios";
+// import { useNavigate } from 'react-router-dom';
+ 
+// const StyledTableCell = styled(TableCell)(({ theme }) => ({
+//   [`&.${tableCellClasses.head}`]: {
+//     backgroundColor: '#003375', // Dark blue color
+//     color: theme.palette.common.white,
+//     fontWeight: 'bold',
+//   },
+//   [`&.${tableCellClasses.body}`]: {
+//     fontSize: 14,
+//   },
+// }));
+ 
+// const StyledTableRow = styled(TableRow)(({ theme }) => ({
+//   "&:nth-of-type(odd)": {
+//     backgroundColor: theme.palette.action.hover,
+//   },
+//   "&:last-child td, &:last-child th": {
+//     border: 0,
+//   },
+// }));
+
+
+// function TablePaginationActions(props) {
+//   const { count, page, rowsPerPage, onPageChange } = props;
+//   const theme = useTheme();
+
+//   const handleFirstPageButtonClick = (event) => {
+//     onPageChange(event, 0);
+//   };
+
+//   const handleBackButtonClick = (event) => {
+//     onPageChange(event, page - 1);
+//   };
+
+//   const handleNextButtonClick = (event) => {
+//     onPageChange(event, page + 1);
+//   };
+
+//   const handleLastPageButtonClick = (event) => {
+//     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+//   };
+
+//   return (
+//     <Box sx={{ flexShrink: 0, ml: 2.5 }}>
+//       <IconButton
+//         onClick={handleFirstPageButtonClick}
+//         disabled={page === 0}
+//         aria-label="first page"
+//       >
+//         {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+       
+//       </IconButton>
+//         <IconButton
+//         onClick={handleBackButtonClick}
+//         disabled={page === 0}
+//         aria-label="previous page"
+//       >
+//         {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+//       </IconButton>
+//       <IconButton
+//         onClick={handleNextButtonClick}
+//         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+//         aria-label="next page"
+//       >
+//         {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+//       </IconButton>
+//       <IconButton
+//         onClick={handleLastPageButtonClick}
+//         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+//         aria-label="last page"
+//       >
+//         {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+//       </IconButton>
+//     </Box>
+//   );
+// }
+
+// TablePaginationActions.propTypes = {
+//   count: PropTypes.number.isRequired,
+//   onPageChange: PropTypes.func.isRequired,
+//   page: PropTypes.number.isRequired,
+//   rowsPerPage: PropTypes.number.isRequired,
+// };
+ 
+// export default function Stores() {
+  
+// const [editingIndex, setEditingIndex] = useState(null);
+// const [page, setPage] = useState(0);
+// const [rowsPerPage, setRowsPerPage] = useState(5);
+// const [searchName, setSearchName] = useState("");
+// const [searchEmail, setSearchEmail] = useState("");
+
+// const [stores, setStores] = useState([]);
+
+
+// const navigate = useNavigate();
+
+// // Handle form changes
+// const handleFormChange = (e) => {
+//   const { name, value } = e.target;
+//   setFormData({
+//     ...formData,
+//     [name]: value,
+//   });
+// };
+
+
+// const [formData, setFormData] = useState({
+//   TenantID: 1,
+//   StoreName:"",
+//   Email: "",
+//   Password: "", 
+//   PhoneNumber: "", 
+//   Gender:"",
+// });
+
+// // Fetch all stores
+// const getAllStores = async () => {
+//   try {
+//     const response = await axios.get(
+//       "https://imlystudios-backend-mqg4.onrender.com/api/stores/getAllStores"
+//     );
+//     console.log("Stores retrieved successfully:", response.data);
+//     return response.data.Stores;
+//   } catch (error) {
+//     console.error("Error fetching stores:", error);
+//     throw error;
+//   }
+// };
+
+// useEffect(() => {
+//   const fetchStores = async () => {
+//     try {
+//       const storesData = await getAllStores();
+//       setStores(storesData);
+//     } catch (error) {
+//       console.error("Failed to fetch stores", error);
+//     }
+//   };
+//   fetchStores();
+// }, []);
+
+// // Handle pagination
+// const handleChangePage = (event, newPage) => {
+//   setPage(newPage);
+// };
+
+// const handleChangeRowsPerPage = (event) => {
+//   setRowsPerPage(parseInt(event.target.value, 10));
+//   setPage(0);
+// };
+
+
+// const paginatedStores = stores.slice(
+//   page * rowsPerPage,
+//   page * rowsPerPage + rowsPerPage
+// );
+// const emptyRows = rowsPerPage - paginatedStores.length;
+// // Get store by ID
+// const getStoreById = async (storeId) => {
+//   try {
+//     const response = await axios.get(
+//       `https://imlystudios-backend-mqg4.onrender.com/api/stores/getStoreById/${storeId}`
+//     );
+//     console.log("Store retrieved successfully:", response.data);
+//     return response.data.Stores || [];
+//     return response.data;
+//   } catch (error) {
+//     console.error("Error fetching store:", error);
+//     throw error;
+//   }
+// };
+
+// // Delete store by ID
+// const deleteStoreById = async (storeId) => {
+//   try {
+//     const response = await axios.delete(
+//       `https://imlystudios-backend-mqg4.onrender.com/api/stores/updateStore/${storeId}`
+//     );
+//     console.log("Store deleted successfully:", response.data);
+//     return response.data;
+//   } catch (error) {
+//     console.error("Error deleting store:", error);
+//     throw error;
+//   }
+// };
+
+// // Update store by ID
+// const updateStoreById = async (storeId, updatedData) => {
+//   try {
+//     const response = await axios.put(
+//       `https://imlystudios-backend-mqg4.onrender.com/api/stores/updateStore/${storeId}`,
+//       updatedData
+//     );
+//     console.log("Store updated successfully:", response.data);
+//     return response.data;
+//   } catch (error) {
+//     console.error("Error updating store:", error);
+//     throw error;
+//   }
+// };
+
+// // Handle edit button click
+// const handleEditClick = async (index) => {
+//   const realIndex = page * rowsPerPage + index;
+//   const storeId = stores[realIndex].StoreID;
+
+//   try {
+//     const storeDetails = await getStoreById(storeId);
+//     setFormData(storeDetails);
+//     setEditingIndex(realIndex);
+//     navigate('/Storeform');
+//   } catch (error) {
+//     console.error("Error fetching store details:", error);
+//   }
+// };
+
+// // Handle save or update action in your form
+// const handleSaveChanges = async (updatedData) => {
+//   const storeId = stores[editingIndex].StoreID;
+
+//   try {
+//     await updateStoreById(storeId, updatedData);
+
+//     // Update the store in the local state
+//     const updatedStores = stores.map((store, index) =>
+//       index === editingIndex ? { ...store, ...updatedData } : store
+//     );
+//     setStores(updatedStores);
+//   } catch (error) {
+//     console.error("Error updating store:", error);
+//   }
+// };
+
+// // Handle delete button click
+// const handleDeleteClick = async (index) => {
+//   const realIndex = page * rowsPerPage + index;
+//   const storeId = stores[realIndex].StoreID;
+
+//   try {
+//     await deleteStoreById(storeId);
+
+//     // Remove the store from the local state
+//     const updatedStores = stores.filter((_, i) => i !== realIndex);
+//     setStores(updatedStores);
+
+//     // Adjust the page if necessary
+//     if (updatedStores.length <= page * rowsPerPage && page > 0) {
+//       setPage(page - 1);
+//     }
+//   } catch (error) {
+//     console.error("Error deleting store:", error);
+//   }
+// };
+// // useEffect(() => {
+// //   const fetchStores = async () => {
+// //     try {
+// //       const storesData = await getAllStores();
+// //       setStores(Array.isArray(storesData) ? storesData : []); // Ensure it's an array
+// //     } catch (error) {
+// //       console.error("Failed to fetch stores", error);
+// //       setStores([]); // Fallback to an empty array in case of error
+// //     }
+// //   };
+// //   fetchStores();
+// // }, []);
+// // Fetch users on component mount
+// useEffect(() => {
+//   const fetchStores = async () => {
+//     try {
+//       const storeList = await getAllStores();
+//       setStores(storeList);
+//     } catch (error) {
+//       console.error("Error fetching users:", error);
+//     }
+//   };
+
+//   fetchStores();
+// }, []);
+
+
+// // Handle cancel button click
+// const handleCancel = () => {
+//   setFormData(null);
+//   setEditingIndex(null);
+// };
+
+// // Example if using useState
+// const [ PaginatedPeople, setPaginatedPeople] = useState([]);
+
+// // Export to Excel
+// const exportToExcel = (data, fileName) => {
+//   const worksheet = XLSX.utils.json_to_sheet(data);
+//   const workbook = XLSX.utils.book_new();
+//   XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+//   XLSX.writeFile(workbook, `${fileName}.xlsx`);
+// };
+
+// const handleExportUsersData = () => {
+//   exportToExcel("Stores");
+// };
+
+
+
+// useEffect(() => {
+//   setPaginatedPeople(
+//     stores.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+//   );
+// }, [stores, page, rowsPerPage]);
+
+// const handleAddUserClick = () => {
+//   navigate('/storeform'); // Navigate to the UserForm route
+// };
+
+//   return (
+    
+//         <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
+//           <div className="flex justify-between items-center">
+//             <h2 className="text-xl font-semibold">Stores</h2>
+            
+//             <div className="flex items-center space-x-4">
+//           <div className="relative flex flex-col w-[20rem] -ml-4">
+//               <label htmlFor="searchName" className="text-sm font-medium"></label>
+//               <input
+//                 id="searchName"
+//                 type="text"
+//                 placeholder="Search by Name or Email or Mobile"
+//                 value={searchName}
+//                 onChange={(e) => setSearchName(e.target.value)}
+//                 className="mt-1 p-2 pr-10 border border-gray-300 rounded-md"
+//               />
+//               <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+//               <IoIosSearch />
+//               </div>
+//             </div>
+//             </div>
+            
+//             <ul className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none flex gap-2 list-none">
+//               <li>
+//                 <button
+//                   type="button"
+//                   className="inline-flex items-center gap-x-1.5 rounded-md bg-custom-darkblue px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-custom-lightblue hover:text-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+//                   onClick={handleAddUserClick}
+//                 >
+//                   <FaPlus aria-hidden="true" className="-ml-0.5 h-4 w-4" />
+//                   Add Stores
+//                 </button>
+//               </li>
+//               <li>
+//                 <button
+//                   type="button"
+//                   className="inline-flex items-center gap-x-1.5 rounded-md bg-custom-darkblue px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-custom-lightblue hover:text-gray-700"
+//                   onClick={handleExportUsersData}
+//                 >
+//                   <FaTable aria-hidden="true" className="-ml-0.5 h-4 w-4" />
+//                   Export Stores
+//                 </button>
+//               </li>
+//             </ul>
+//           </div>
+ 
+//           <div className="mt-4">
+//             <div className="flex items-center space-x-8">
+             
+//             </div>
+ 
+//             <TableContainer component={Paper} className="mt-4">
+//               <Table>
+//                 <TableHead>
+//                   <TableRow>
+//                     <StyledTableCell>Name</StyledTableCell>
+//                     <StyledTableCell>Email</StyledTableCell>
+//                     <StyledTableCell>Phone</StyledTableCell>
+//                     <StyledTableCell>Location</StyledTableCell>
+//                     {/* <StyledTableCell>Gender</StyledTableCell> */}
+//                     <StyledTableCell>Actions</StyledTableCell>
+//                   </TableRow>
+//                 </TableHead>
+//                 <TableBody>
+//                   {paginatedStores.map((person, index) => (
+//                     <StyledTableRow key={index}>
+//                       <StyledTableCell>{person.name}</StyledTableCell>
+//                       <StyledTableCell>{person.Email}</StyledTableCell>
+//                       <StyledTableCell>{person.role}</StyledTableCell>
+//                       {/* <StyledTableCell>{person.title}</StyledTableCell> */}
+//                       {/* <StyledTableCell>{person.gender}</StyledTableCell> */}
+//                       <StyledTableCell>
+//                         {person.addressLine1}
+//                         {person.addressLine2 && `, ${person.addressLine2}`}
+//                         <br />
+//                         {person.city}, {person.state}, {person.zipCode}
+//                       </StyledTableCell>
+//                       <StyledTableCell>
+//                         <button
+//                           type="button"
+//                           onClick={() => handleEditClick(index)}
+//                           className="inline-flex items-center gap-x-1 rounded-md bg-blue-600 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-blue-500"
+//                         >
+//                           <AiOutlineEdit aria-hidden="true" className="h-4 w-4" />
+//                           Edit
+//                         </button>
+//                         <button
+//                           type="button"
+//                           onClick={() => handleDeleteClick(index)}
+//                           className="inline-flex items-center gap-x-1 ml-2 rounded-md bg-red-600 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-red-500"
+//                         >
+//                           <AiOutlineDelete aria-hidden="true" className="h-4 w-4" />
+//                           Delete
+//                         </button>
+//                       </StyledTableCell>
+//                     </StyledTableRow>
+//                   ))}
+//                   {emptyRows > 0 && (
+//                     <TableRow style={{ height: 53 * emptyRows }}>
+//                       <TableCell colSpan={7} />
+//                     </TableRow>
+//                   )}
+//                 </TableBody>
+//                 <TableFooter>
+//                 <TableRow>
+//             <TablePagination
+//               rowsPerPageOptions={[5, 10, 25]}
+//               colSpan={6}
+//               count={stores.length}
+//               rowsPerPage={rowsPerPage}
+//               page={page}
+//               SelectProps={{
+//                 inputProps: {
+//                   "aria-label": "rows per page",
+//                 },
+//                 native: true,
+//               }}
+//               onPageChange={handleChangePage}
+//               onRowsPerPageChange={handleChangeRowsPerPage}
+//               ActionsComponent={TablePaginationActions}
+//             />
+//           </TableRow>
+          
+//                 </TableFooter>
+//               </Table>
+//             </TableContainer>
+//           </div>
+//         </div>
+   
+    
+//   );
+// }
+
+import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
@@ -971,26 +1446,25 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import * as XLSX from 'xlsx';
-import TableFooter from '@mui/material/TableFooter';
-import TablePagination from '@mui/material/TablePagination';
-import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
-import { FaTable, FaPlus } from 'react-icons/fa';
+import IconButton from "@mui/material/IconButton";
+import TableFooter from "@mui/material/TableFooter";
+import TablePagination from "@mui/material/TablePagination";
+import FirstPageIcon from "@mui/icons-material/FirstPage";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import LastPageIcon from "@mui/icons-material/LastPage";
+import { useTheme } from "@mui/material/styles";
+import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
+import * as XLSX from "xlsx";
+import PropTypes from "prop-types";
+import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import { IoIosSearch } from "react-icons/io";
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
-import PropTypes from 'prop-types'; // For prop types validation
-import LastPageIcon from '@mui/icons-material/LastPage';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
- 
+import { StoreContext } from '../../Context/storeContext'; // Import StoreContext
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: '#003375', // Dark blue color
+    backgroundColor: '#003375',
     color: theme.palette.common.white,
     fontWeight: 'bold',
   },
@@ -998,16 +1472,15 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     fontSize: 14,
   },
 }));
- 
+
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
+  "&:nth-of-type(even)": {
     backgroundColor: theme.palette.action.hover,
   },
   "&:last-child td, &:last-child th": {
     border: 0,
   },
 }));
-
 
 function TablePaginationActions(props) {
   const { count, page, rowsPerPage, onPageChange } = props;
@@ -1037,9 +1510,8 @@ function TablePaginationActions(props) {
         aria-label="first page"
       >
         {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
-       
       </IconButton>
-        <IconButton
+      <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0}
         aria-label="previous page"
@@ -1070,367 +1542,195 @@ TablePaginationActions.propTypes = {
   page: PropTypes.number.isRequired,
   rowsPerPage: PropTypes.number.isRequired,
 };
- 
-export default function Stores() {
-  
-const [editingIndex, setEditingIndex] = useState(null);
-const [page, setPage] = useState(0);
-const [rowsPerPage, setRowsPerPage] = useState(5);
-const [searchName, setSearchName] = useState("");
-const [searchEmail, setSearchEmail] = useState("");
 
-const [stores, setStores] = useState([]);
+function Stores() {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [searchName, setSearchName] = useState("");
+  const [stores, setStores] = useState([]);
 
+  const navigate = useNavigate();
+  const { setStoreDetails, getStoreById, deleteStoreById } = useContext(StoreContext); // Use StoreContext
 
-const navigate = useNavigate();
-
-// Handle form changes
-const handleFormChange = (e) => {
-  const { name, value } = e.target;
-  setFormData({
-    ...formData,
-    [name]: value,
-  });
-};
-
-
-const [formData, setFormData] = useState({
-  TenantID: 1,
-  StoreName:"",
-  Email: "",
-  Password: "", 
-  PhoneNumber: "", 
-  Gender:"",
-});
-
-// Fetch all stores
-const getAllStores = async () => {
-  try {
-    const response = await axios.get(
-      "https://imlystudios-backend-mqg4.onrender.com/api/stores/getAllStores"
-    );
-    console.log("Stores retrieved successfully:", response.data);
-    return response.data.Stores;
-  } catch (error) {
-    console.error("Error fetching stores:", error);
-    throw error;
-  }
-};
-
-useEffect(() => {
-  const fetchStores = async () => {
+  const getAllStores = async () => {
     try {
-      const storesData = await getAllStores();
-      setStores(storesData);
+      const response = await axios.get(
+        "https://imlystudios-backend-mqg4.onrender.com/api/stores/getAllStores"
+      );
+      return response.data.stores;
     } catch (error) {
-      console.error("Failed to fetch stores", error);
-    }
-  };
-  fetchStores();
-}, []);
-
-// Handle pagination
-const handleChangePage = (event, newPage) => {
-  setPage(newPage);
-};
-
-const handleChangeRowsPerPage = (event) => {
-  setRowsPerPage(parseInt(event.target.value, 10));
-  setPage(0);
-};
-
-
-const paginatedStores = stores.slice(
-  page * rowsPerPage,
-  page * rowsPerPage + rowsPerPage
-);
-const emptyRows = rowsPerPage - paginatedStores.length;
-// Get store by ID
-const getStoreById = async (storeId) => {
-  try {
-    const response = await axios.get(
-      `https://imlystudios-backend-mqg4.onrender.com/api/stores/getStoreById/${storeId}`
-    );
-    console.log("Store retrieved successfully:", response.data);
-    return response.data.Stores || [];
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching store:", error);
-    throw error;
-  }
-};
-
-// Delete store by ID
-const deleteStoreById = async (storeId) => {
-  try {
-    const response = await axios.delete(
-      `https://imlystudios-backend-mqg4.onrender.com/api/stores/updateStore/${storeId}`
-    );
-    console.log("Store deleted successfully:", response.data);
-    return response.data;
-  } catch (error) {
-    console.error("Error deleting store:", error);
-    throw error;
-  }
-};
-
-// Update store by ID
-const updateStoreById = async (storeId, updatedData) => {
-  try {
-    const response = await axios.put(
-      `https://imlystudios-backend-mqg4.onrender.com/api/stores/updateStore/${storeId}`,
-      updatedData
-    );
-    console.log("Store updated successfully:", response.data);
-    return response.data;
-  } catch (error) {
-    console.error("Error updating store:", error);
-    throw error;
-  }
-};
-
-// Handle edit button click
-const handleEditClick = async (index) => {
-  const realIndex = page * rowsPerPage + index;
-  const storeId = stores[realIndex].StoreID;
-
-  try {
-    const storeDetails = await getStoreById(storeId);
-    setFormData(storeDetails);
-    setEditingIndex(realIndex);
-    navigate('/Storeform');
-  } catch (error) {
-    console.error("Error fetching store details:", error);
-  }
-};
-
-// Handle save or update action in your form
-const handleSaveChanges = async (updatedData) => {
-  const storeId = stores[editingIndex].StoreID;
-
-  try {
-    await updateStoreById(storeId, updatedData);
-
-    // Update the store in the local state
-    const updatedStores = stores.map((store, index) =>
-      index === editingIndex ? { ...store, ...updatedData } : store
-    );
-    setStores(updatedStores);
-  } catch (error) {
-    console.error("Error updating store:", error);
-  }
-};
-
-// Handle delete button click
-const handleDeleteClick = async (index) => {
-  const realIndex = page * rowsPerPage + index;
-  const storeId = stores[realIndex].StoreID;
-
-  try {
-    await deleteStoreById(storeId);
-
-    // Remove the store from the local state
-    const updatedStores = stores.filter((_, i) => i !== realIndex);
-    setStores(updatedStores);
-
-    // Adjust the page if necessary
-    if (updatedStores.length <= page * rowsPerPage && page > 0) {
-      setPage(page - 1);
-    }
-  } catch (error) {
-    console.error("Error deleting store:", error);
-  }
-};
-// useEffect(() => {
-//   const fetchStores = async () => {
-//     try {
-//       const storesData = await getAllStores();
-//       setStores(Array.isArray(storesData) ? storesData : []); // Ensure it's an array
-//     } catch (error) {
-//       console.error("Failed to fetch stores", error);
-//       setStores([]); // Fallback to an empty array in case of error
-//     }
-//   };
-//   fetchStores();
-// }, []);
-// Fetch users on component mount
-useEffect(() => {
-  const fetchStores = async () => {
-    try {
-      const storeList = await getAllStores();
-      setStores(storeList);
-    } catch (error) {
-      console.error("Error fetching users:", error);
+      console.error("Error fetching stores:", error);
+      throw error;
     }
   };
 
-  fetchStores();
-}, []);
+  useEffect(() => {
+    const fetchStores = async () => {
+      try {
+        const storesData = await getAllStores();
+        setStores(storesData);
+      } catch (error) {
+        console.error("Failed to fetch stores", error);
+      }
+    };
+    fetchStores();
+  }, []);
 
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
 
-// Handle cancel button click
-const handleCancel = () => {
-  setFormData(null);
-  setEditingIndex(null);
-};
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
-// Example if using useState
-const [ PaginatedPeople, setPaginatedPeople] = useState([]);
-
-// Export to Excel
-const exportToExcel = (data, fileName) => {
-  const worksheet = XLSX.utils.json_to_sheet(data);
-  const workbook = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-  XLSX.writeFile(workbook, `${fileName}.xlsx`);
-};
-
-const handleExportUsersData = () => {
-  exportToExcel("Stores");
-};
-
-
-
-useEffect(() => {
-  setPaginatedPeople(
-    stores.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+  const paginatedStores = stores.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage
   );
-}, [stores, page, rowsPerPage]);
+  const emptyRows = rowsPerPage - paginatedStores.length;
 
-const handleAddUserClick = () => {
-  navigate('/storeform'); // Navigate to the UserForm route
-};
+  const handleEditClick = async (index) => {
+    const realIndex = page * rowsPerPage + index;
+    const storeId = stores[realIndex].storeId;
+
+    try {
+      const storeDetails = await getStoreById(storeId); // Use getStoreById from context
+      setStoreDetails(storeDetails);
+      navigate('/storeform');
+    } catch (error) {
+      console.error("Error fetching store details:", error);
+    }
+  };
+
+  const handleDeleteClick = async (index) => {
+    const realIndex = page * rowsPerPage + index;
+    const storeId = stores[realIndex].storeId;
+
+    try {
+      await deleteStoreById(storeId); // Use deleteStoreById from context
+      const updatedStores = stores.filter((_, i) => i !== realIndex);
+      setStores(updatedStores);
+
+      if (updatedStores.length <= page * rowsPerPage && page > 0) {
+        setPage(page - 1);
+      }
+    } catch (error) {
+      console.error("Error deleting store:", error);
+    }
+  };
+
+  const exportToExcel = (data, fileName) => {
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+    XLSX.writeFile(workbook, `${fileName}.xlsx`);
+  };
+
+  const handleExportStoresData = () => {
+    exportToExcel(stores, "Stores");
+  };
 
   return (
-    
-        <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
-          <div className="flex justify-between items-center">
-            <h2 className="text-xl font-semibold">Stores</h2>
-            
-            <div className="flex items-center space-x-4">
-          <div className="relative flex flex-col w-[20rem] -ml-4">
+    <div className="px-4 sm:px-6 lg:px-8 pt-4 ml-10 lg:ml-72 w-auto">
+      <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
+        <div className="flex justify-between items-center">
+          <h2 className="text-xl font-semibold">Stores</h2>
+
+          <div className="flex items-center space-x-4">
+            <div className="relative flex flex-col w-[20rem] -ml-4">
               <label htmlFor="searchName" className="text-sm font-medium"></label>
               <input
                 id="searchName"
                 type="text"
-                placeholder="Search by Name or Email or Mobile"
+                placeholder="Search by Name or Email"
                 value={searchName}
                 onChange={(e) => setSearchName(e.target.value)}
                 className="mt-1 p-2 pr-10 border border-gray-300 rounded-md"
               />
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-              <IoIosSearch />
+                <IoIosSearch />
               </div>
             </div>
-            </div>
-            
-            <ul className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none flex gap-2 list-none">
-              <li>
-                <button
-                  type="button"
-                  className="inline-flex items-center gap-x-1.5 rounded-md bg-custom-darkblue px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-custom-lightblue hover:text-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
-                  onClick={handleAddUserClick}
-                >
-                  <FaPlus aria-hidden="true" className="-ml-0.5 h-4 w-4" />
-                  Add Stores
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  className="inline-flex items-center gap-x-1.5 rounded-md bg-custom-darkblue px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-custom-lightblue hover:text-gray-700"
-                  onClick={handleExportUsersData}
-                >
-                  <FaTable aria-hidden="true" className="-ml-0.5 h-4 w-4" />
-                  Export Stores
-                </button>
-              </li>
-            </ul>
           </div>
- 
-          <div className="mt-4">
-            <div className="flex items-center space-x-8">
-             
-            </div>
- 
-            <TableContainer component={Paper} className="mt-4">
-              <Table>
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCell>Name</StyledTableCell>
-                    <StyledTableCell>Email</StyledTableCell>
-                    <StyledTableCell>Phone</StyledTableCell>
-                    <StyledTableCell>Location</StyledTableCell>
-                    {/* <StyledTableCell>Gender</StyledTableCell> */}
-                    <StyledTableCell>Actions</StyledTableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {paginatedStores.map((person, index) => (
-                    <StyledTableRow key={index}>
-                      <StyledTableCell>{person.name}</StyledTableCell>
-                      <StyledTableCell>{person.Email}</StyledTableCell>
-                      <StyledTableCell>{person.role}</StyledTableCell>
-                      {/* <StyledTableCell>{person.title}</StyledTableCell> */}
-                      {/* <StyledTableCell>{person.gender}</StyledTableCell> */}
-                      <StyledTableCell>
-                        {person.addressLine1}
-                        {person.addressLine2 && `, ${person.addressLine2}`}
-                        <br />
-                        {person.city}, {person.state}, {person.zipCode}
-                      </StyledTableCell>
-                      <StyledTableCell>
-                        <button
-                          type="button"
-                          onClick={() => handleEditClick(index)}
-                          className="inline-flex items-center gap-x-1 rounded-md bg-blue-600 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-blue-500"
-                        >
-                          <AiOutlineEdit aria-hidden="true" className="h-4 w-4" />
-                          Edit
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => handleDeleteClick(index)}
-                          className="inline-flex items-center gap-x-1 ml-2 rounded-md bg-red-600 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-red-500"
-                        >
-                          <AiOutlineDelete aria-hidden="true" className="h-4 w-4" />
-                          Delete
-                        </button>
-                      </StyledTableCell>
-                    </StyledTableRow>
-                  ))}
-                  {emptyRows > 0 && (
-                    <TableRow style={{ height: 53 * emptyRows }}>
-                      <TableCell colSpan={7} />
-                    </TableRow>
-                  )}
-                </TableBody>
-                <TableFooter>
-                <TableRow>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25]}
-              colSpan={6}
-              count={stores.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              SelectProps={{
-                inputProps: {
-                  "aria-label": "rows per page",
-                },
-                native: true,
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
-            />
-          </TableRow>
-          
-                </TableFooter>
-              </Table>
-            </TableContainer>
-          </div>
+          <ul className="mt-4 sm:ml-16 sm:mt-0 flex space-x-4">
+            <li>
+              <button
+                type="button"
+                onClick={() => navigate('/storeform')}
+                className="inline-flex items-center gap-x-1 rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500"
+              >
+                <FaPlus aria-hidden="true" className="h-4 w-4" />
+                Add Store
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                onClick={handleExportStoresData}
+                className="inline-flex items-center gap-x-1 rounded-md bg-green-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500"
+              >
+                <FaEdit aria-hidden="true" className="h-4 w-4" />
+                Export to Excel
+              </button>
+            </li>
+          </ul>
         </div>
-   
-    
+
+        <TableContainer component={Paper} className="mt-4 rounded-lg shadow">
+          <Table>
+            <TableHead>
+              <TableRow>
+                <StyledTableCell>Store Name</StyledTableCell>
+                <StyledTableCell>Email</StyledTableCell>
+                <StyledTableCell>Phone</StyledTableCell>
+                <StyledTableCell>Location</StyledTableCell>
+                <StyledTableCell>Actions</StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {paginatedStores.map((row, index) => (
+                <StyledTableRow key={row.StoreId}>
+                  <StyledTableCell>{row.StoreName}</StyledTableCell>
+                  <StyledTableCell>{row.Email}</StyledTableCell>
+                  <StyledTableCell>{row.Phone}</StyledTableCell>
+                  <StyledTableCell>{row.Address}</StyledTableCell>
+                  <StyledTableCell>
+                    <IconButton onClick={() => handleEditClick(index)}>
+                      <AiOutlineEdit />
+                    </IconButton>
+                    <IconButton onClick={() => handleDeleteClick(index)}>
+                      <AiOutlineDelete />
+                    </IconButton>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+              {emptyRows > 0 && (
+                <StyledTableRow style={{ height: 53 * emptyRows }}>
+                  <StyledTableCell colSpan={6} />
+                </StyledTableRow>
+              )}
+            </TableBody>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  rowsPerPageOptions={[5, 10, 25]}
+                  colSpan={5}
+                  count={stores.length}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                  ActionsComponent={TablePaginationActions}
+                />
+              </TableRow>
+            </TableFooter>
+          </Table>
+        </TableContainer>
+      </div>
+    </div>
   );
 }
+
+export default Stores;

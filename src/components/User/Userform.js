@@ -5497,7 +5497,7 @@ function Userform() {
 
   const [formData, setFormData] = useState(location.state?.userDetails || {
     TenantID: 1,
-    EmployeeID: 121,
+    EmployeeID: "1210",
     FirstName: "",
     LastName: "",
     Email: "",
@@ -5507,15 +5507,13 @@ function Userform() {
     RoleID: "",
     AddressLine1: "",
     AddressLine2: "",
-    CityID: "",
-    StateID: "",
+    CityID : "",
+    StateID:  Number(""),
     CountryID:5,
     ZipCode: "",
     ProfileImg: "",
     Comments: "",
-    CreatedBy:"sravani",
-    UpdatedBy:"sravani"
-
+    
   });
 
   useEffect(() => {
@@ -5529,13 +5527,13 @@ function Userform() {
         RoleID: "",
         AddressLine1: "",
         AddressLine2: "",
-        CityID: 0,
-        StateID: "",
+        CityID:Number(""),
+        StateID:Number(""),
         CountryID:5,
         ZipCode: "",
         ProfileImg: "",
         Comments: "",
-        Password: "",  // Clear password if in edit mode
+        Password: "", 
       });
     }
   }, [isEditMode]);
@@ -5554,8 +5552,8 @@ function Userform() {
         RoleID: user.RoleID || "",
         AddressLine1: user.AddressLine1 || "",
         AddressLine2: user.AddressLine2 || "",
-        CityID: user.CityID || 0,
-        StateID: user.StateID || "",
+        CityID: user.CityID ||  Number(""),
+        StateID: user.StateID ||  Number(""),
         ZipCode: user.ZipCode || "",
         ProfileImg: user.ProfileImg || "",
         Comments: user.Comments || "",
@@ -5597,7 +5595,7 @@ function Userform() {
         formData
       );
       console.log("Submission successful:", response.data);
-      
+
       navigate("/user");
     } catch (error) {
       console.error("Submission failed:", error);
@@ -5751,7 +5749,7 @@ function Userform() {
                 type="number"
                 id="CityID"
                 name="CityID"
-                value={formData.CityID || ""}
+                value={formData.CityID}
                 onChange={handleFormChange}
                 required
                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -5775,7 +5773,7 @@ function Userform() {
             </div>
 
             {/* Gender */}
-            <div>
+            {/* <div>
               <label htmlFor="Gender" className="block text-sm font-medium text-gray-700">
                 Gender
               </label>
@@ -5788,16 +5786,32 @@ function Userform() {
                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               >
                 <option value="">Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
+                <option value="Male">M</option>
+                <option value="Female">F</option>
+              
               </select>
-            </div>
+            </div> */}
+
+<div>
+  <label htmlFor="Gender" className="block text-sm font-medium text-gray-700">
+    Gender
+  </label>
+  <input
+    type="text"
+    id="Gender"
+    name="Gender"
+    value={formData.Gender || ""}
+    onChange={handleFormChange}
+    required
+    className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+  />
+</div>
+
 
             {/* State */}
             <div>
               <label htmlFor="StateID" className="block text-sm font-medium text-gray-700">
-                State
+                StateID
               </label>
               <input
                 type="number"
