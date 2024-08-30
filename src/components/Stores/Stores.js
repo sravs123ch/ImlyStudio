@@ -1544,13 +1544,14 @@ TablePaginationActions.propTypes = {
 };
 
 function Stores() {
+  const [editingIndex, setEditingIndex] = useState(null);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [searchName, setSearchName] = useState("");
   const [stores, setStores] = useState([]);
 
   const navigate = useNavigate();
-  const { setStoreDetails, getStoreById, deleteStoreById } = useContext(StoreContext); // Use StoreContext
+
 
   const getAllStores = async () => {
     try {
@@ -1591,22 +1592,85 @@ function Stores() {
   );
   const emptyRows = rowsPerPage - paginatedStores.length;
 
+  const getStoreById = async (storeId) => {
+    try {
+      const response = await axios.get(
+        `https://imlystudios-backend-mqg4.onrender.com/api/stores/getStoreById/${storeId}`
+      );
+      console.log("Store retrieved successfully:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching store:", error);
+      throw error;
+    }
+  };
+// API Call for deleting a store
+const deleteStoreById = async (storeId) => {
+  try {
+    const response = await axios.delete(
+      `https://imlystudios-backend-mqg4.onrender.com/api/stores/updateStore/${storeId}`
+    );
+    console.log("Store deleted successfully:", response.data);
+    return response.data; // Return the response data
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    throw error;
+  }
+};
+
+  //  API Call for updating a user
+const updateStoreById = async (storeId, updatedData) => {
+  try {
+    const response = await axios.put(
+      `https://imlystudios-backend-mqg4.onrender.com/api/stores/updateStore/${storeId}`,
+      updatedData
+    );
+    console.log("Store updated successfully:", response.data);
+    return response.data; // Return the response data
+  } catch (error) {
+    console.error("Error updating user:", error);
+    throw error;
+  }
+};
+
+const { setStoreDetails } = useContext(StoreContext); 
+
   const handleEditClick = async (index) => {
     const realIndex = page * rowsPerPage + index;
-    const storeId = stores[realIndex].storeId;
+    const storeId = stores[realIndex].StoreId;
 
     try {
       const storeDetails = await getStoreById(storeId); // Use getStoreById from context
+      console.log("Fetched store details:", storeDetails);
       setStoreDetails(storeDetails);
-      navigate('/storeform');
+      navigate('/Storeform');
     } catch (error) {
       console.error("Error fetching store details:", error);
     }
   };
 
+
+  //  Handle save or update action in your form
+  const handleSaveChanges = async (updatedData) => {
+    const storeId = stores[editingIndex].StoreID;
+  
+    try {
+      await updateStoreById(storeId, updatedData); // Update the user via API
+      
+      // Update the user in the local state
+      const updatedStores = stores.map((store, index) =>
+        index === editingIndex ? { ...store, ...updatedData } : store
+      );
+      setStores(updatedStores);
+      // setIsFormVisible(false); // Hide the form after saving changes
+    } catch (error) {
+      console.error("Error updating stores:", error);
+    }
+  };
+
   const handleDeleteClick = async (index) => {
     const realIndex = page * rowsPerPage + index;
-    const storeId = stores[realIndex].storeId;
+    const storeId = stores[realIndex].StoreID;
 
     try {
       await deleteStoreById(storeId); // Use deleteStoreById from context
@@ -1621,6 +1685,21 @@ function Stores() {
     }
   };
 
+  // Fetch users on component mount
+useEffect(() => {
+  const fetchStores = async () => {
+    try {
+      const storeList = await getAllStores();
+      setStores(storeList);
+    } catch (error) {
+      console.error("Error fetching stores:", error);
+    }
+  };
+
+  fetchStores();
+}, []);
+
+const [paginatedPeople, setPaginatedPeople] = useState([]);
   const exportToExcel = (data, fileName) => {
     const worksheet = XLSX.utils.json_to_sheet(data);
     const workbook = XLSX.utils.book_new();
@@ -1629,7 +1708,19 @@ function Stores() {
   };
 
   const handleExportStoresData = () => {
-    exportToExcel(stores, "Stores");
+    exportToExcel("Stores");
+  };
+
+  useEffect(() => {
+    setPaginatedPeople(
+      stores.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+    );
+  }, [stores, page, rowsPerPage]);
+
+  const handleAddStoreClick = () => {
+    // Clear the user details before navigating
+    setStoreDetails(null); // Assuming setUserDetails is a method from UserContext to clear user details
+    navigate('/Storeform');
   };
 
   return (
@@ -1658,8 +1749,9 @@ function Stores() {
             <li>
               <button
                 type="button"
-                onClick={() => navigate('/storeform')}
+               
                 className="inline-flex items-center gap-x-1 rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500"
+                onClick={handleAddStoreClick}
               >
                 <FaPlus aria-hidden="true" className="h-4 w-4" />
                 Add Store
@@ -1689,9 +1781,10 @@ function Stores() {
                 <StyledTableCell>Actions</StyledTableCell>
               </TableRow>
             </TableHead>
+
             <TableBody>
               {paginatedStores.map((row, index) => (
-                <StyledTableRow key={row.StoreId}>
+                <StyledTableRow key={index}>
                   <StyledTableCell>{row.StoreName}</StyledTableCell>
                   <StyledTableCell>{row.Email}</StyledTableCell>
                   <StyledTableCell>{row.Phone}</StyledTableCell>

@@ -124,15 +124,35 @@ const Login = () =>{
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
  
-    const handleLogin = (e) =>{
-        e.preventDefault();
-        if(userName === "admin" && password ==="admin123"){
-          navigate("/AddOrders");
-          setError('');
-        }else{
-          setError('Enter Valid Credentials');
-        }
-    }
+    // const handleLogin = (e) =>{
+    //     e.preventDefault();
+    //     if(userName === "admin" && password ==="admin123"){
+    //       navigate("/AddOrders");
+    //       setError('');
+    //     }else{
+    //       setError('Enter Valid Credentials');
+    //     }
+    // }
+
+    const handleLogin = async (e) => {
+      e.preventDefault();
+      
+      // Hardcoded credentials (replace with API call in a real scenario)
+      if (userName === "admin" && password === "admin123") {
+        // Simulate receiving a JWT token from the server
+        const fakeToken = "your-jwt-token"; // Replace this with the actual token you receive from the server
+    
+        // Store the token in local storage
+        localStorage.setItem("authToken", fakeToken);
+    
+        // Navigate to AddOrders page
+        navigate("/AddOrders");
+        setError('');
+      } else {
+        setError('Enter Valid Credentials');
+      }
+    };
+    
     return(
         <>
         <div className="flex min-h-full p-0 m-0 flex-1 bg-white">

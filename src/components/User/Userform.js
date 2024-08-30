@@ -1,4 +1,3 @@
-
 // import React, { useState } from "react";
 // import * as XLSX from "xlsx";
 // import { FaTable, FaEdit, FaTrash } from "react-icons/fa";
@@ -77,7 +76,6 @@
 //   const [searchTerm, setSearchTerm] = useState("");
 //   const [filterGender, setFilterGender] = useState("");
 
-
 //   const handleFormChange = (e) => {
 //     const { name, value } = e.target;
 //     setFormData({
@@ -85,7 +83,7 @@
 //       [name]: value,
 //     });
 //   };
-  
+
 //   const handleImageChange = (e) => {
 //     const file = e.target.files[0];
 //     if (file) {
@@ -121,8 +119,6 @@
 //     setIsFormVisible(false); // Hide the form after submission
 //   };
 
-
-
 //   const handleCancel = () => {
 //     setFormData({
 //       name: "",
@@ -148,7 +144,7 @@
 //       {/* Only show the form if isFormVisible is true */}
 //       <div>
 //         {isFormVisible ? (
-          
+
 //           <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
 //             <form onSubmit={handleFormSubmit}>
 //               <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
@@ -368,7 +364,7 @@
 //         ) : (
 //           // Only show the table if isFormVisible is false
 //           <div className="mt-6">
-       
+
 //           </div>
 //         )}
 //       </div>
@@ -697,7 +693,6 @@
 //   );
 // }
 
-
 // import React, { useState } from "react";
 
 // const initialPeople = [
@@ -1003,7 +998,6 @@
 //     </div>
 //   );
 // }
-
 
 // import React, { useState } from "react";
 
@@ -1437,7 +1431,6 @@
 //   );
 // }
 
-
 // export default function User(props) {
 //     const [people, setPeople] = useState(initialPeople);
 //     const [formData, setFormData] = useState(null);
@@ -1447,8 +1440,7 @@
 //     const [rowsPerPage, setRowsPerPage] = useState(5);
 //     const [searchName, setSearchName] = useState('');
 //   const [searchEmail, setSearchEmail] = useState('');
-  
-  
+
 //     // Handle form changes
 //     const handleFormChange = (e) => {
 //       const { name, value } = e.target;
@@ -1480,7 +1472,7 @@
 //         reader.readAsDataURL(file);
 //       }
 //     };
-  
+
 //     // Handle form submission
 //     const handleFormSubmit = (e) => {
 //       e.preventDefault();
@@ -1495,16 +1487,14 @@
 //       setFormData(null);
 //       setIsFormVisible(false);
 //     };
-  
+
 //     // Handle cancel button click
 //     const handleCancel = () => {
 //       setFormData(null);
 //       setEditingIndex(null);
 //       setIsFormVisible(false);
 //     };
-  
-    
-  
+
 //     // Handle add user button click
 //     const handleAddUserClick = () => {
 //       setFormData({
@@ -1523,49 +1513,49 @@
 //       setEditingIndex(null);
 //       setIsFormVisible(true);
 //     };
-  
+
 //     // Handle edit button click
 //     const handleEditClick = (index) => {
 //       setFormData(people[index]);
 //       setEditingIndex(index);
 //       setIsFormVisible(true);
 //     };
-  
+
 //     // Handle delete button click
 //     const handleDeleteClick = (index) => {
 //       const updatedPeople = people.filter((_, i) => i !== index);
 //       setPeople(updatedPeople);
 //     };
-  
+
 //     // Handle page change
 //     const handleChangePage = (event, newPage) => {
 //       setPage(newPage);
 //     };
-  
+
 //     // Handle rows per page change
 //     const handleChangeRowsPerPage = (event) => {
 //       setRowsPerPage(parseInt(event.target.value, 10));
 //       setPage(0);
 //     };
-  
+
 //     // const filteredPeople = people.filter(person =>
 //     //   person.name.toLowerCase().includes(searchName.toLowerCase()) &&
 //     //   person.email.toLowerCase().includes(searchEmail.toLowerCase())
 //     // );
-    
+
 //     // const paginatedPeople = filteredPeople.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 //     const [paginatedPeople, setPaginatedPeople] = useState([]);
-  
+
 //   // useEffect(() => {
 //   //   const filteredPeople = people.filter(person =>
 //   //     person.name.toLowerCase().includes(searchName.toLowerCase()) &&
 //   //     person.email.toLowerCase().includes(searchEmail.toLowerCase())
 //   //   );
-  
+
 //   //   const paginatedResults = rowsPerPage > 0
 //   //     ? filteredPeople.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 //   //     : filteredPeople;
-  
+
 //   //   setPaginatedPeople(paginatedResults);
 //   // }, [people, searchName, searchEmail, page, rowsPerPage]);
 //   useEffect(() => {
@@ -1573,24 +1563,23 @@
 //       person.name.toLowerCase().includes(searchName.toLowerCase()) &&
 //       person.email.toLowerCase().includes(searchEmail.toLowerCase())
 //     );
-  
+
 //     const paginatedResults = rowsPerPage > 0
 //       ? filteredPeople.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 //       : filteredPeople;
-  
+
 //     setPaginatedPeople(paginatedResults);
-  
+
 //     // Calculate empty rows for pagination
-//     const emptyRowsCalculation = page > 0 
-//       ? Math.max(0, (1 + page) * rowsPerPage - filteredPeople.length) 
+//     const emptyRowsCalculation = page > 0
+//       ? Math.max(0, (1 + page) * rowsPerPage - filteredPeople.length)
 //       : 0;
-  
+
 //     setEmptyRows(emptyRowsCalculation);
 //   }, [people, searchName, searchEmail, page, rowsPerPage]);
-  
+
 //   const [emptyRows, setEmptyRows] = useState(0);
-  
-  
+
 //     const handleSearch = () => {
 //       const filteredPeople = people.filter(person =>
 //         person.name.toLowerCase().includes(searchName.toLowerCase()) &&
@@ -1598,15 +1587,13 @@
 //       );
 //       setPaginatedPeople(filteredPeople.slice(0, rowsPerPage));
 //     };
-    
-  
+
 //     // // Pagination calculations
 //     // const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - people.length) : 0;
 //     // const paginatedPeople = rowsPerPage > 0
 //     //   ? people.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 //     //   : people;
-    
-  
+
 //     return (
 //       <div className="px-4 sm:px-6 lg:px-8 pt-4 ml-10 lg:ml-72 w-auto">
 //         {/* Conditional Rendering */}
@@ -1729,7 +1716,7 @@
 //       </div>
 //     </div>
 //   </div>
-  
+
 //             <TableContainer component={Paper} className="mt-4">
 //               <Table>
 //                 <TableHead>
@@ -1799,7 +1786,7 @@
 //                 </TableFooter>
 //               </Table>
 //             </TableContainer>
-  
+
 //   {/* <TableContainer component={Paper} className="mt-4">
 //     <Table>
 //       <TableHead>
@@ -1868,8 +1855,8 @@
 //       </TableFooter>
 //     </Table>
 //   </TableContainer> */}
-  
-//           </div>     
+
+//           </div>
 //         ) : (
 //           <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
 //             <form onSubmit={handleFormSubmit}>
@@ -1927,7 +1914,7 @@
 //                     className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
 //                   />
 //                 </div>
-  
+
 //                                <div>
 //                      <label htmlFor="gender" className="block text-sm font-medium">
 //                        Gender
@@ -1954,7 +1941,7 @@
 //                       </option>
 //                     </select>
 //                   </div>
-               
+
 //                 {/* Additional fields for address */}
 //                 <div>
 //                   <label
@@ -2062,7 +2049,7 @@
 //                   type="submit"
 //                   className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
 //                 >
-                
+
 //                   Save
 //                 </button>
 //                 <button
@@ -2079,15 +2066,13 @@
 //       </div>
 //     );
 //   }
-  
-
 
 // // export default function User() {
 // //     const [people, setPeople] = useState(initialPeople);
 // //     const [formData, setFormData] = useState(null);
 // //     const [editingIndex, setEditingIndex] = useState(null);
 // //     const [isFormVisible, setIsFormVisible] = useState(false);
-  
+
 // //     const handleFormChange = (e) => {
 // //       const { name, value } = e.target;
 // //       setFormData({
@@ -2095,7 +2080,7 @@
 // //         [name]: value,
 // //       });
 // //     };
-  
+
 // //     const handleImageChange = (e) => {
 // //       const file = e.target.files[0];
 // //       if (file) {
@@ -2109,7 +2094,7 @@
 // //         reader.readAsDataURL(file);
 // //       }
 // //     };
-  
+
 // //     const handleFormSubmit = (e) => {
 // //       e.preventDefault();
 // //       if (editingIndex !== null) {
@@ -2123,13 +2108,13 @@
 // //       setFormData(null);
 // //       setIsFormVisible(false);
 // //     };
-  
+
 // //     const handleCancel = () => {
 // //       setFormData(null);
 // //       setEditingIndex(null);
 // //       setIsFormVisible(false);
 // //     };
-  
+
 // //     const handleAddUserClick = () => {
 // //       setFormData({
 // //         name: "",
@@ -2147,18 +2132,18 @@
 // //       setEditingIndex(null);
 // //       setIsFormVisible(true);
 // //     };
-  
+
 // //     const handleEditClick = (index) => {
 // //       setFormData(people[index]);
 // //       setEditingIndex(index);
 // //       setIsFormVisible(true);
 // //     };
-  
+
 // //     const handleDeleteClick = (index) => {
 // //       const updatedPeople = people.filter((_, i) => i !== index);
 // //       setPeople(updatedPeople);
 // //     };
-  
+
 // //     return (
 // //       <div className="px-4 sm:px-6 lg:px-8 pt-4 ml-10 lg:ml-72 w-auto">
 // //         {/* Conditional Rendering */}
@@ -2436,15 +2421,14 @@
 // //       </div>
 // //     );
 // //   }
-  
+
 // //   // const StyledTableCell = (props) => (
 // //   //   <TableCell {...props} className="px-6 py-4 text-sm font-medium text-gray-900" />
 // //   // );
-  
+
 // //   // const StyledTableRow = (props) => (
 // //   //   <TableRow {...props} className="bg-white border-b hover:bg-gray-50" />
 // //   // );
-
 
 // import React, { useEffect } from 'react';
 // import { useUserContext } from './UserContext';
@@ -2498,7 +2482,6 @@
 
 // export default UserForm;
 
-
 // import React, { useState,useEffect } from "react";
 // import { styled } from "@mui/material/styles";
 // import Table from "@mui/material/Table";
@@ -2523,13 +2506,13 @@
 //   [`&.${tableCellClasses.head}`]: {
 //     // backgroundColor: theme.palette.action.hover,
 //     // color: theme.palette.common.black,
-    
-//       // backgroundColor: theme.palette.action.focus, 
+
+//       // backgroundColor: theme.palette.action.focus,
 //       // color: theme.palette.common.black,
-    
-//       backgroundColor: theme.palette.grey[400], 
+
+//       backgroundColor: theme.palette.grey[400],
 //       color: theme.palette.common.black,
-    
+
 //   },
 //   [`&.${tableCellClasses.body}`]: {
 //     fontSize: 14,
@@ -2607,7 +2590,6 @@
 //   const [rowsPerPage, setRowsPerPage] = useState(5);
 //   const [searchName, setSearchName] = useState('');
 //   const [searchEmail, setSearchEmail] = useState('');
-  
 
 //   // Handle form changes
 //   const handleFormChange = (e) => {
@@ -2682,7 +2664,7 @@
 //    const handleExportUsersData = () => {
 //         exportToExcel(people, 'Customers');
 //       };
-      
+
 //   // Handle edit button click
 //   const handleEditClick = (index) => {
 //     setFormData(people[index]);
@@ -2721,7 +2703,6 @@
 //   );
 //   setPaginatedPeople(filteredPeople.slice(0, rowsPerPage));
 // };
-
 
 // // Initial pagination setup or when data changes
 // useEffect(() => {
@@ -2852,28 +2833,28 @@
 //                         </span>
 //                       </StyledTableCell>
 //                     <StyledTableCell>
-                    
+
 //                       <StyledTableCell>
-  
+
 //     <div
 //       className="inline-flex items-center justify-center w-14 h-7 cursor-pointer rounded-lg bg-blue-100 text-blue-800 shadow-md"
 //       onClick={() => handleEditClick(index)}
 //     >
 //       <FaEdit className="w-4 h-4" />
 //     </div>
-    
+
 // </StyledTableCell>
 
 //                     </StyledTableCell>
 //                     <StyledTableCell>
-                    
+
 //                         <div
 //       className="inline-flex items-center justify-center w-14 h-7 cursor-pointer rounded-lg bg-pink-100 text-red-500 shadow-md"
 //       onClick={() => handleDeleteClick(index)}
 //     >
 //       <FaTrash className="w-4 h-4" />
 //     </div>
-  
+
 //                       {/* </Tooltip> */}
 //                     </StyledTableCell>
 //                   </StyledTableRow>
@@ -2920,7 +2901,7 @@
 //           </TableContainer>
 //         </div>
 //       ) : (
-    
+
 //         <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
 //           <form onSubmit={handleFormSubmit}>
 //             <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
@@ -3004,7 +2985,7 @@
 //                     </option>
 //                   </select>
 //                 </div>
-             
+
 //               {/* Additional fields for address */}
 //               <div>
 //                 <label
@@ -3112,7 +3093,7 @@
 //                 type="submit"
 //                 className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
 //               >
-              
+
 //                 Save
 //               </button>
 //               <button
@@ -3133,13 +3114,10 @@
 // import React, { useState,useEffect} from "react";
 // import axios from "axios";
 
-
-
 // function Userform() {
- 
+
 //   const [page, setPage] = useState(0);
 //   const [rowsPerPage, setRowsPerPage] = useState(5);
- 
 
 //   const [role, setRole] = useState('');
 //   const [showDropdown, setShowDropdown] = useState(false);
@@ -3175,8 +3153,8 @@
 //   FirstName: "",
 //   LastName: "",
 //   Email: "",
-//   Password: "", 
-//   PhoneNumber: "", 
+//   Password: "",
+//   PhoneNumber: "",
 //   Gender:"",
 
 // });
@@ -3215,30 +3193,24 @@
 //   }
 // };
 
-
-
 //   // Handle cancel button click
 //   const handleCancel = () => {
 //     setFormData(null);
-   
+
 //   };
 
-
-  
 //   return (
 //     <div className="px-4 sm:px-6 lg:px-8 pt-4 ml-10 lg:ml-72 w-auto">
- 
+
 //         <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
 
 // <form onSubmit={handleFormSubmit}>
 //   {/* <h2 className="text-xl font-semibold">Users</h2> */}
-  
+
 //   <div className="flex justify-between items-center mb-6">
 //   <h2 className="text-xl font-semibold mb-4 px-24">Users</h2>
- 
-     
+
 // </div>
-  
 
 //   <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8 px-16 md:px-24">
 //     {/* First Name */}
@@ -3458,8 +3430,6 @@
 //   )}
 // </div>
 
-
-
 //     {/* Comments */}
 //     <div>
 //       <label htmlFor="comments" className="block text-sm font-medium text-gray-700">
@@ -3492,12 +3462,11 @@
 //   </div>
 // </form>
 //         </div>
-     
+
 //     </div>
 //   );
 // }
 // export default Userform;
-
 
 // import React, { useState ,useEffect} from "react";
 // import axios from "axios";
@@ -3514,8 +3483,8 @@
 //     FirstName: "",
 //     LastName: "",
 //     Email: "",
-//     Password: "", 
-//     PhoneNumber: "", 
+//     Password: "",
+//     PhoneNumber: "",
 //     Gender: "",
 //   });
 
@@ -3525,8 +3494,6 @@
 //       setFormData(location.state.userDetails);
 //     }
 //   }, [location.state?.userDetails]);
-
-  
 
 //   const handleFormChange = (e) => {
 //     const { name, value } = e.target;
@@ -3543,7 +3510,6 @@
 //     }
 //   }, [location.state?.userDetails]);
 
-  
 //   // Handle image upload
 //   const handleImageChange = (e) => {
 //     const file = e.target.files[0];
@@ -3589,7 +3555,7 @@
 //   // Handle cancel button click
 //   const handleCancel = () => {
 //     // setFormData(null);
-//     navigate("/user"); 
+//     navigate("/user");
 //   };
 //   return (
 //       <div className="px-4 sm:px-6 lg:px-8 pt-4 ml-10 lg:ml-72 w-auto">
@@ -3816,8 +3782,6 @@
 //   )}
 // </div>
 
-
-
 //     {/* Comments */}
 //     <div>
 //       <label htmlFor="comments" className="block text-sm font-medium text-gray-700">
@@ -3850,13 +3814,12 @@
 //   </div>
 // </form>
 //         </div>
-     
+
 //     </div>
 //   );
 // }
 
 // export default Userform;
-
 
 // import React, { useState, useEffect } from "react";
 // import axios from "axios";
@@ -3971,8 +3934,8 @@
 //                   className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
 //                 />
 //               </div>
-//             </div>  
-            
+//             </div>
+
 //             {/* Address Line 1 */}
 //             <div className="flex items-center">
 //               <div className="w-full">
@@ -4203,7 +4166,6 @@
 
 // export default Userform;
 
-
 // import React, { useState, useEffect, useContext } from 'react';
 // import axios from 'axios';
 // import { useNavigate, useLocation } from 'react-router-dom';
@@ -4243,7 +4205,6 @@
 //     console.log("userDetails is not defined, null, or empty");
 //   }
 // }, [userDetails]);
-
 
 //   const handleFormChange = (e) => {
 //     const { name, value } = e.target;
@@ -4560,7 +4521,6 @@
 
 // export default Userform;
 
-
 // import React, { useState, useEffect, useContext } from 'react';
 // import axios from 'axios';
 // import { useNavigate, useLocation } from 'react-router-dom';
@@ -4573,7 +4533,7 @@
 
 //   // Determine if in edit mode (from location state or context)
 //   const isEditMode = location.state?.userDetails?.user || userDetails?.user;
-  
+
 //   const [formData, setFormData] = useState({
 //     FirstName: "",
 //     LastName: "",
@@ -4654,10 +4614,10 @@
 //     event.preventDefault();
 //     try {
 //       console.log("Submitted details:", formData);
-//       const url = isEditMode 
+//       const url = isEditMode
 //         ? "https://imlystudios-backend-mqg4.onrender.com/api/users/updateUser" // Update URL as needed
 //         : "https://imlystudios-backend-mqg4.onrender.com/api/users/createUser";
-        
+
 //       const response = await axios.post(url, formData);
 //       console.log("Submission successful:", response.data);
 //       navigate("/user");
@@ -4766,10 +4726,10 @@
 //     setLoading(true);
 //     setError("");
 //     try {
-//       const url = isEditMode 
-//         ? "https://imlystudios-backend-mqg4.onrender.com/api/users/updateUser" 
+//       const url = isEditMode
+//         ? "https://imlystudios-backend-mqg4.onrender.com/api/users/updateUser"
 //         : "https://imlystudios-backend-mqg4.onrender.com/api/users/createUser";
-        
+
 //       const response = await axios.post(url, formData);
 //       console.log("Submission successful:", response.data);
 //       navigate("/user");
@@ -5059,7 +5019,6 @@
 
 // export default Userform;
 
-
 // import React, { useState, useEffect, useContext } from 'react';
 // import axios from 'axios';
 // import { useNavigate, useLocation } from 'react-router-dom';
@@ -5119,7 +5078,7 @@
 
 //   useEffect(() => {
 //     if (!isEditMode) return;
-    
+
 //     // If in edit mode, set form data based on user details
 //     const user = location.state?.userDetails?.user || userDetails?.user;
 //     if (user) {
@@ -5137,7 +5096,7 @@
 //         RoleID: user.RoleID || "",
 //         ProfileImg: user.ProfileImg || "",
 //         Comments: user.Comments || "",
-//         UserID: user.UserID || "" 
+//         UserID: user.UserID || ""
 //       });
 //     }
 //   }, [isEditMode, location.state?.userDetails?.user, userDetails?.user]);
@@ -5164,7 +5123,6 @@
 //     }
 //   };
 
-
 //   const handleFormSubmit = async (event) => {
 //     event.preventDefault();
 //     try {
@@ -5175,11 +5133,11 @@
 //         "https://imlystudios-backend-mqg4.onrender.com/api/users/createUser",
 //         formData
 //       );
-//      console.log("Submission successful:", response.data);     
+//      console.log("Submission successful:", response.data);
 //        navigate("/user"); // Navigate to the "Users" page after successful submission
 //     } catch (error) {
 //       console.error("Submission failed:", error);
-//     }  
+//     }
 //   }
 //   const handleUpdateSubmit = async (event) => {
 //     event.preventDefault();
@@ -5198,8 +5156,8 @@
 //             `https://imlystudios-backend-mqg4.onrender.com/api/users/updateUser/${userId}`,
 //             formData
 //         );
-        
-//         console.log("Update successful:", response.data);     
+
+//         console.log("Update successful:", response.data);
 //         navigate("/user"); // Navigate to the "Users" page after successful update
 //     } catch (error) {
 //         // Logging detailed error information
@@ -5210,14 +5168,12 @@
 //         } else {
 //             console.error("Update failed with error:", error.message);
 //         }
-//     }  
+//     }
 // };
-
 
 //   const handleCancel = () => {
 //     navigate("/user");
 //   };
-
 
 //   return (
 //     <div className="px-4 sm:px-6 lg:px-8 pt-4 ml-10 lg:ml-72 w-auto">
@@ -5482,84 +5438,1154 @@
 
 // export default Userform;
 
-import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { UserContext } from '../../Context/userContext';
+// import React, { useState, useEffect, useContext } from "react";
+// import axios from "axios";
+// import { useNavigate, useLocation } from "react-router-dom";
+// import { UserContext } from "../../Context/userContext";
+
+// function Userform() {
+//   const navigate = useNavigate();
+//   const location = useLocation();
+//   const { userDetails } = useContext(UserContext);
+
+//   // Determine if in edit mode (only if user data exists)
+//   const isEditMode = Boolean(
+//     location.state?.userDetails?.user || userDetails?.user
+//   );
+
+//   const [formData, setFormData] = useState(
+//     location.state?.userDetails || {
+//       TenantID: 1,
+//       // EmployeeID: "1213",
+//       FirstName: "",
+//       LastName: "",
+//       Email: "",
+//       Password: "",
+//       PhoneNumber: "",
+//       Gender: "",
+//       RoleID: "",
+//       AddressLine1: "",
+//       AddressLine2: "",
+//       CityID: "",
+//       StateID: "",
+//       CountryID: 5,
+//       ZipCode: "",
+//       ProfileImage: "",
+//       Comments: "",
+//     }
+//   );
+
+//   useEffect(() => {
+//     if (isEditMode) {
+//       setFormData({
+//         FirstName: "",
+//         LastName: "",
+//         Email: "",
+//         PhoneNumber: "",
+//         Gender: "",
+//         RoleID: "",
+//         AddressLine1: "",
+//         AddressLine2: "",
+//         CityID:"",
+//         StateID:"",
+//         CountryID: 5,
+//         ZipCode: "",
+//         ProfileImage: "",
+//         Comments: "",
+//         Password: "",
+//       });
+//     }
+//   }, [isEditMode]);
+
+//   useEffect(() => {
+//     if (!isEditMode) return;
+
+//     const user = location.state?.userDetails?.user || userDetails?.user;
+//     if (user) {
+
+//       setFormData({
+//         FirstName: user.FirstName || "",
+//         LastName: user.LastName || "",
+//         Email: user.Email || "",
+//         PhoneNumber: user.PhoneNumber || "",
+//         Gender: user.Gender || "",
+//         RoleID: user.RoleID || "",
+//         ProfileImage: user.ProfileImage || "",
+//         Comments: user.Comments || "",
+//         UserID: user.UserID || "",
+//         Password: user.Password || "",
+//         Address: {
+//           AddressLine1: user.Address?.AddressLine1 || "",
+//           AddressLine2: user.Address?.AddressLine2 || "",
+//           CityID: user.Address?.CityID || "",
+//           StateID: user.Address?.StateID || "",
+//           CountryID: user.Address?.CountryID || "",
+//           ZipCode: user.Address?.ZipCode || "",
+//         }
+//       });
+//       console.log(setFormData);
+//     }
+//   }, [isEditMode, location.state?.userDetails?.user, userDetails?.user]);
+
+//   const handleFormChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData({
+//       ...formData,
+//       [name]: value,
+//     });
+//   };
+
+//   const handleImageChange = (e) => {
+//     const file = e.target.files[0];
+//     if (file) {
+//       const reader = new FileReader();
+//       reader.onloadend = () => {
+//         setFormData({
+//           ...formData,
+//           ProfileImage: reader.result,
+//         });
+//       };
+//       reader.readAsDataURL(file);
+//     }
+//   };
+
+//   const handleFormSubmit = async (event) => {
+//     event.preventDefault();
+//     try {
+//       console.log("Submitted details:", formData);
+
+//       const response = await axios.post(
+//         "https://imlystudios-backend-mqg4.onrender.com/api/users/createUser",
+//         formData
+//       );
+//       console.log("Submission successful:", response.data);
+
+//       navigate("/user");
+//     } catch (error) {
+//       console.error("Submission failed:", error);
+//     }
+//   };
+
+//   const handleUpdateSubmit = async (event) => {
+//     event.preventDefault();
+//     try {
+//       const userId = formData.UserID;
+//       if (!userId) {
+//         console.error("User ID is missing in formData");
+//         return;
+//       }
+
+//       console.log("Submitted details for update:", formData);
+
+//       const response = await axios.put(
+//         `https://imlystudios-backend-mqg4.onrender.com/api/users/updateUser/${userId}`,
+//         formData
+//       );
+//       console.log("Update successful:", response.data);
+//       navigate("/user");
+//     } catch (error) {
+//       if (error.response) {
+//         console.error(
+//           "Update failed with response error:",
+//           error.response.data
+//         );
+//       } else if (error.request) {
+//         console.error(
+//           "Update failed with no response received:",
+//           error.request
+//         );
+//       } else {
+//         console.error("Update failed with error:", error.message);
+//       }
+//     }
+//   };
+
+//   const handleCancel = () => {
+//     navigate("/user");
+//   };
+
+//   return (
+//     <div className="px-4 sm:px-6 lg:px-8 pt-4 ml-10 lg:ml-72 w-auto">
+//       <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
+//         <form onSubmit={isEditMode ? handleUpdateSubmit : handleFormSubmit}>
+//           <div className="flex justify-between items-center mb-6">
+//             <h2 className="text-xl font-semibold mb-4 px-24">Users</h2>
+//           </div>
+//           <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8 px-16 md:px-24">
+//             {/* First Name */}
+//             <div className="flex items-center">
+//               <div className="w-full">
+//                 <label
+//                   htmlFor="FirstName"
+//                   className="block text-sm font-medium text-gray-700"
+//                 >
+//                   First Name
+//                 </label>
+//                 <input
+//                   type="text"
+//                   id="FirstName"
+//                   name="FirstName"
+//                   value={formData.FirstName || ""}
+//                   onChange={handleFormChange}
+//                   required
+//                   className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//                 />
+//               </div>
+//             </div>
+
+//             {/* Address Line 1 */}
+//             <div className="flex items-center">
+//               <div className="w-full">
+//                 <label
+//                   htmlFor="AddressLine1"
+//                   className="block text-sm font-medium text-gray-700"
+//                 >
+//                   Address Line 1
+//                 </label>
+//                 <input
+//                   type="text"
+//                   id="AddressLine1"
+//                   name="AddressLine1"
+//                   value={formData.AddressLine1 || ""}
+//                   onChange={handleFormChange}
+//                   required
+//                   className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//                 />
+//               </div>
+//             </div>
+
+//             {/* Last Name */}
+//             <div>
+//               <label
+//                 htmlFor="LastName"
+//                 className="block text-sm font-medium text-gray-700"
+//               >
+//                 Last Name
+//               </label>
+//               <input
+//                 type="text"
+//                 id="LastName"
+//                 name="LastName"
+//                 value={formData.LastName || ""}
+//                 onChange={handleFormChange}
+//                 required
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Address Line 2 */}
+//             <div>
+//               <label
+//                 htmlFor="AddressLine2"
+//                 className="block text-sm font-medium text-gray-700"
+//               >
+//                 Address Line 2
+//               </label>
+//               <input
+//                 type="text"
+//                 id="AddressLine2"
+//                 name="AddressLine2"
+//                 value={formData.AddressLine2 || ""}
+//                 onChange={handleFormChange}
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Email */}
+//             <div>
+//               <label
+//                 htmlFor="Email"
+//                 className="block text-sm font-medium text-gray-700"
+//               >
+//                 Email
+//               </label>
+//               <input
+//                 type="email"
+//                 id="Email"
+//                 name="Email"
+//                 value={formData.Email || ""}
+//                 onChange={handleFormChange}
+//                 required
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Password */}
+//             <div>
+//               <label
+//                 htmlFor="Password"
+//                 className="block text-sm font-medium text-gray-700"
+//               >
+//                 Password
+//               </label>
+//               <input
+//                 id="Password"
+//                 name="Password"
+//                 type="password"
+//                 value={formData.Password || ""}
+//                 onChange={handleFormChange}
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* City */}
+//             <div>
+//               <label
+//                 htmlFor="CityID"
+//                 className="block text-sm font-medium text-gray-700"
+//               >
+//                 CityID
+//               </label>
+//               <input
+//                 type="number"
+//                 id="CityID"
+//                 name="CityID"
+//                 value={formData.CityID}
+//                 onChange={handleFormChange}
+//                 required
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Phone Number */}
+//             <div>
+//               <label
+//                 htmlFor="PhoneNumber"
+//                 className="block text-sm font-medium text-gray-700"
+//               >
+//                 Phone Number
+//               </label>
+//               <input
+//                 type="text"
+//                 id="PhoneNumber"
+//                 name="PhoneNumber"
+//                 value={formData.PhoneNumber || ""}
+//                 onChange={handleFormChange}
+//                 required
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Gender */}
+//             <div>
+//               <label htmlFor="Gender" className="block text-sm font-medium text-gray-700">
+//                 Gender
+//               </label>
+//               <select
+//                 id="Gender"
+//                 name="Gender"
+//                 value={formData.Gender || ""}
+//                 onChange={handleFormChange}
+//                 required
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               >
+//                 <option value="">Select Gender</option>
+//                 <option value="M">M</option>
+//                 <option value="F">F</option>
+
+//               </select>
+//             </div>
+
+//             {/* State */}
+//             <div>
+//               <label
+//                 htmlFor="StateID"
+//                 className="block text-sm font-medium text-gray-700"
+//               >
+//                 StateID
+//               </label>
+//               <input
+//                 type="number"
+//                 id="StateID"
+//                 name="StateID"
+//                 value={formData.StateID || ""}
+//                 onChange={handleFormChange}
+//                 required
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Zip Code */}
+//             <div>
+//               <label
+//                 htmlFor="ZipCode"
+//                 className="block text-sm font-medium text-gray-700"
+//               >
+//                 Zip Code
+//               </label>
+//               <input
+//                 type="text"
+//                 id="ZipCode"
+//                 name="ZipCode"
+//                 value={formData.ZipCode || ""}
+//                 onChange={handleFormChange}
+//                 required
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Role ID */}
+//             <div>
+//               <label
+//                 htmlFor="RoleID"
+//                 className="block text-sm font-medium text-gray-700"
+//               >
+//                 Role ID
+//               </label>
+//               <input
+//                 type="text"
+//                 id="RoleID"
+//                 name="RoleID"
+//                 value={formData.RoleID || ""}
+//                 onChange={handleFormChange}
+//                 required
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Profile Image */}
+//             <div>
+//               <label
+//                 htmlFor="ProfileImage"
+//                 className="block text-sm font-medium text-gray-700"
+//               >
+//                 Profile Image
+//               </label>
+//               <input
+//                 type="file"
+//                 id="ProfileImage"
+//                 name="ProfileImage"
+//                 accept="image"
+//                 onChange={handleImageChange}
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Comments */}
+//             <div className="sm:col-span-1">
+//               <label
+//                 htmlFor="Comments"
+//                 className="block text-sm font-medium text-gray-700"
+//               >
+//                 Comments
+//               </label>
+//               <textarea
+//                 id="Comments"
+//                 name="Comments"
+//                 value={formData.Comments || ""}
+//                 onChange={handleFormChange}
+//                 rows={3}
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               ></textarea>
+//             </div>
+//           </div>
+
+//           {/* Buttons */}
+//           <div className="px-4 py-3 text-right sm:px-6">
+//             <button
+//               type="submit"
+//               className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+//             >
+//               {isEditMode ? "Update User" : "Create User"}
+//             </button>
+//             <button
+//               type="button"
+//               onClick={handleCancel}
+//               className="ml-3 inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+//             >
+//               Cancel
+//             </button>
+//           </div>
+//         </form>
+//       </div>
+//     </div>
+//   );
+// }
+// export default Userform;
+
+// import React, { useState, useEffect, useContext } from "react";
+// import axios from "axios";
+// import { useNavigate, useLocation } from "react-router-dom";
+// import { UserContext } from "../../Context/userContext";
+
+// function Userform() {
+//   const navigate = useNavigate();
+//   const location = useLocation();
+//   const { userDetails } = useContext(UserContext);
+
+//   // Determine if in edit mode (only if user data exists)
+//   const isEditMode = Boolean(
+//     location.state?.userDetails?.user || userDetails?.user
+//   );
+
+//   const [formData, setFormData] = useState(
+//     location.state?.userDetails || {
+//       TenantID: 1,
+//       // EmployeeID: "1213",
+//       FirstName: "",
+//       LastName: "",
+//       Email: "",
+//       Password: "",
+//       PhoneNumber: "",
+//       Gender: "",
+//       RoleID: "",
+//       AddressLine1: "",
+//       AddressLine2: "",
+//       CityID: "",
+//       StateID: "",
+//       CountryID: 5,
+//       ZipCode: "",
+//       ProfileImage: "",
+//       Comments: "",
+//     }
+//   );
+
+//   useEffect(() => {
+//     if (isEditMode) {
+//       setFormData({
+//         FirstName: "",
+//         LastName: "",
+//         Email: "",
+//         PhoneNumber: "",
+//         Gender: "",
+//         RoleID: "",
+//         AddressLine1: "",
+//         AddressLine2: "",
+//         CityID:"",
+//         StateID:"",
+//         CountryID: 5,
+//         ZipCode: "",
+//         ProfileImage: "",
+//         Comments: "",
+//         Password: "",
+//       });
+//     }
+//   }, [isEditMode]);
+
+//   useEffect(() => {
+//     if (!isEditMode) return;
+
+//     const user = location.state?.userDetails?.user || userDetails?.user;
+//     if (user) {
+
+//       setFormData({
+//         FirstName: user.FirstName || "",
+//         LastName: user.LastName || "",
+//         Email: user.Email || "",
+//         PhoneNumber: user.PhoneNumber || "",
+//         Gender: user.Gender || "",
+//         RoleID: user.RoleID || "",
+//         ProfileImage: user.ProfileImage || "",
+//         Comments: user.Comments || "",
+//         UserID: user.UserID || "",
+//         Password: user.Password || "",
+//         Address: {
+//           AddressLine1: user.Address?.AddressLine1 || "",
+//           AddressLine2: user.Address?.AddressLine2 || "",
+//           CityID: user.Address?.CityID || "",
+//           StateID: user.Address?.StateID || "",
+//           CountryID: user.Address?.CountryID || "",
+//           ZipCode: user.Address?.ZipCode || "",
+//         }
+//       });
+//       console.log(setFormData);
+//     }
+//   }, [isEditMode, location.state?.userDetails?.user, userDetails?.user]);
+
+//   const handleFormChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData({
+//       ...formData,
+//       [name]: value,
+//     });
+//   };
+
+//   const handleImageChange = (e) => {
+//     const file = e.target.files[0];
+//     if (file) {
+//       const reader = new FileReader();
+//       reader.onloadend = () => {
+//         setFormData({
+//           ...formData,
+//           ProfileImage: reader.result,
+//         });
+//       };
+//       reader.readAsDataURL(file);
+//     }
+//   };
+
+//   const handleFormSubmit = async (event) => {
+//     event.preventDefault();
+//     try {
+//       console.log("Submitted details:", formData);
+
+//       const response = await axios.post(
+//         "https://imlystudios-backend-mqg4.onrender.com/api/users/createUser",
+//         formData
+//       );
+//       console.log("Submission successful:", response.data);
+
+//       navigate("/user");
+//     } catch (error) {
+//       console.error("Submission failed:", error);
+//     }
+//   };
+
+//   const handleUpdateSubmit = async (event) => {
+//     event.preventDefault();
+//     try {
+//       const userId = formData.UserID;
+//       if (!userId) {
+//         console.error("User ID is missing in formData");
+//         return;
+//       }
+
+//       console.log("Submitted details for update:", formData);
+
+//       const response = await axios.put(
+//         `https://imlystudios-backend-mqg4.onrender.com/api/users/updateUser/${userId}`,
+//         formData
+//       );
+//       console.log("Update successful:", response.data);
+//       navigate("/user");
+//     } catch (error) {
+//       if (error.response) {
+//         console.error(
+//           "Update failed with response error:",
+//           error.response.data
+//         );
+//       } else if (error.request) {
+//         console.error(
+//           "Update failed with no response received:",
+//           error.request
+//         );
+//       } else {
+//         console.error("Update failed with error:", error.message);
+//       }
+//     }
+//   };
+
+//   const handleCancel = () => {
+//     navigate("/user");
+//   };
+// import React, { useState, useEffect, useContext } from "react";
+// import axios from "axios";
+// import { useNavigate, useLocation } from "react-router-dom";
+// import { UserContext } from "../../Context/userContext";
+
+// function Userform() {
+//   const navigate = useNavigate();
+//   const location = useLocation();
+//   const { userDetails } = useContext(UserContext);
+
+//   const isEditMode = Boolean(
+//     location.state?.userDetails?.user || userDetails?.user
+//   );
+
+//   const [formData, setFormData] = useState(
+//     location.state?.userDetails || {
+//       TenantID: 1,
+//       FirstName: "",
+//       LastName: "",
+//       Email: "",
+//       Password: "",
+//       PhoneNumber: "",
+//       Gender: "",
+//       RoleID: "",
+//       AddressLine1: "",
+//       AddressLine2: "",
+//       CityID: "",
+//       StateID: "",
+//       CountryID: 5,
+//       ZipCode: "",
+//       ProfileImage: null, // Change to null initially
+//       Comments: "",
+//     }
+//   );
+
+//   useEffect(() => {
+//     if (isEditMode) {
+//       const user = location.state?.userDetails?.user || userDetails?.user;
+//       if (user) {
+//         setFormData({
+//           FirstName: user.FirstName || "",
+//           LastName: user.LastName || "",
+//           Email: user.Email || "",
+//           PhoneNumber: user.PhoneNumber || "",
+//           Gender: user.Gender || "",
+//           RoleID: user.RoleID || "",
+//           ProfileImage: null, // Reset to null if editing
+//           Comments: user.Comments || "",
+//           UserID: user.UserID || "",
+//           Password: user.Password || "",
+//           AddressLine1: user.Address?.AddressLine1 || "",
+//           AddressLine2: user.Address?.AddressLine2 || "",
+//           CityID: user.Address?.CityID || "",
+//           StateID: user.Address?.StateID || "",
+//           CountryID: user.Address?.CountryID || "",
+//           ZipCode: user.Address?.ZipCode || "",
+//         });
+//       }
+//     }
+//   }, [isEditMode, location.state?.userDetails?.user, userDetails?.user]);
+
+//   const handleFormChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData({
+//       ...formData,
+//       [name]: value,
+//     });
+//   };
+
+//   const handleImageChange = (e) => {
+//     const file = e.target.files[0];
+//     if (file) {
+//       setFormData({
+//         ...formData,
+//         ProfileImage: file, // Save the file object directly
+//       });
+//     }
+//   };
+
+//   const handleFormSubmit = async (event) => {
+//     event.preventDefault();
+//     try {
+//       const formDataToSend = new FormData();
+//       Object.keys(formData).forEach((key) => {
+//         if (key === "ProfileImage" && formData[key]) {
+//           formDataToSend.append("ProfileImage", formData[key]);
+//         } else {
+//           formDataToSend.append(key, formData[key]);
+//         }
+//       });
+
+//       const response = await axios.post(
+//         "https://imlystudios-backend-mqg4.onrender.com/api/users/createUser",
+//         formDataToSend,
+//         {
+//           headers: {
+//             "Content-Type": "multipart/form-data",
+//           },
+//         }
+//       );
+//       console.log("Submission successful:", response.data);
+
+//       navigate("/user");
+//     } catch (error) {
+//       console.error("Submission failed:", error);
+//     }
+//   };
+
+//   const handleUpdateSubmit = async (event) => {
+//     event.preventDefault();
+//     try {
+//       const userId = formData.UserID;
+//       if (!userId) {
+//         console.error("User ID is missing in formData");
+//         return;
+//       }
+
+//       const formDataToSend = new FormData();
+//       Object.keys(formData).forEach((key) => {
+//         if (key === "ProfileImage" && formData[key]) {
+//           formDataToSend.append("ProfileImage", formData[key]);
+//         } else {
+//           formDataToSend.append(key, formData[key]);
+//         }
+//       });
+
+//       const response = await axios.put(
+//         `https://imlystudios-backend-mqg4.onrender.com/api/users/updateUser/${userId}`,
+//         formDataToSend,
+//         {
+//           headers: {
+//             "Content-Type": "multipart/form-data",
+//           },
+//         }
+//       );
+//       console.log("Update successful:", response.data);
+//       navigate("/user");
+//     } catch (error) {
+//       if (error.response) {
+//         console.error(
+//           "Update failed with response error:",
+//           error.response.data
+//         );
+//       } else if (error.request) {
+//         console.error(
+//           "Update failed with no response received:",
+//           error.request
+//         );
+//       } else {
+//         console.error("Update failed with error:", error.message);
+//       }
+//     }
+//   };
+
+//   const handleCancel = () => {
+//     navigate("/user");
+//   };
+
+//   return (
+//     <div className="px-4 sm:px-6 lg:px-8 pt-4 ml-10 lg:ml-72 w-auto">
+//       <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
+//         <form onSubmit={isEditMode ? handleUpdateSubmit : handleFormSubmit}>
+//           <div className="flex justify-between items-center mb-6">
+//             <h2 className="text-xl font-semibold mb-4 px-24">Users</h2>
+//           </div>
+//           <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8 px-16 md:px-24">
+//             {/* First Name */}
+//             <div className="flex items-center">
+//               <div className="w-full">
+//                 <label
+//                   htmlFor="FirstName"
+//                   className="block text-sm font-medium text-gray-700"
+//                 >
+//                   First Name
+//                 </label>
+//                 <input
+//                   type="text"
+//                   id="FirstName"
+//                   name="FirstName"
+//                   value={formData.FirstName || ""}
+//                   onChange={handleFormChange}
+//                   required
+//                   className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//                 />
+//               </div>
+//             </div>
+
+//             {/* Address Line 1 */}
+//             <div className="flex items-center">
+//               <div className="w-full">
+//                 <label
+//                   htmlFor="AddressLine1"
+//                   className="block text-sm font-medium text-gray-700"
+//                 >
+//                   Address Line 1
+//                 </label>
+//                 <input
+//                   type="text"
+//                   id="AddressLine1"
+//                   name="AddressLine1"
+//                   value={formData.AddressLine1 || ""}
+//                   onChange={handleFormChange}
+//                   required
+//                   className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//                 />
+//               </div>
+//             </div>
+
+//             {/* Last Name */}
+//             <div>
+//               <label
+//                 htmlFor="LastName"
+//                 className="block text-sm font-medium text-gray-700"
+//               >
+//                 Last Name
+//               </label>
+//               <input
+//                 type="text"
+//                 id="LastName"
+//                 name="LastName"
+//                 value={formData.LastName || ""}
+//                 onChange={handleFormChange}
+//                 required
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Address Line 2 */}
+//             <div>
+//               <label
+//                 htmlFor="AddressLine2"
+//                 className="block text-sm font-medium text-gray-700"
+//               >
+//                 Address Line 2
+//               </label>
+//               <input
+//                 type="text"
+//                 id="AddressLine2"
+//                 name="AddressLine2"
+//                 value={formData.AddressLine2 || ""}
+//                 onChange={handleFormChange}
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Email */}
+//             <div>
+//               <label
+//                 htmlFor="Email"
+//                 className="block text-sm font-medium text-gray-700"
+//               >
+//                 Email
+//               </label>
+//               <input
+//                 type="email"
+//                 id="Email"
+//                 name="Email"
+//                 value={formData.Email || ""}
+//                 onChange={handleFormChange}
+//                 required
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Password */}
+//             <div>
+//               <label
+//                 htmlFor="Password"
+//                 className="block text-sm font-medium text-gray-700"
+//               >
+//                 Password
+//               </label>
+//               <input
+//                 id="Password"
+//                 name="Password"
+//                 type="password"
+//                 value={formData.Password || ""}
+//                 onChange={handleFormChange}
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* City */}
+//             <div>
+//               <label
+//                 htmlFor="CityID"
+//                 className="block text-sm font-medium text-gray-700"
+//               >
+//                 CityID
+//               </label>
+//               <input
+//                 type="number"
+//                 id="CityID"
+//                 name="CityID"
+//                 value={formData.CityID}
+//                 onChange={handleFormChange}
+//                 required
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Phone Number */}
+//             <div>
+//               <label
+//                 htmlFor="PhoneNumber"
+//                 className="block text-sm font-medium text-gray-700"
+//               >
+//                 Phone Number
+//               </label>
+//               <input
+//                 type="text"
+//                 id="PhoneNumber"
+//                 name="PhoneNumber"
+//                 value={formData.PhoneNumber || ""}
+//                 onChange={handleFormChange}
+//                 required
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Gender */}
+//             <div>
+//               <label
+//                 htmlFor="Gender"
+//                 className="block text-sm font-medium text-gray-700"
+//               >
+//                 Gender
+//               </label>
+//               <select
+//                 id="Gender"
+//                 name="Gender"
+//                 value={formData.Gender || ""}
+//                 onChange={handleFormChange}
+//                 required
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               >
+//                 <option value="">Select Gender</option>
+//                 <option value="M">M</option>
+//                 <option value="F">F</option>
+//               </select>
+//             </div>
+
+//             {/* State */}
+//             <div>
+//               <label
+//                 htmlFor="StateID"
+//                 className="block text-sm font-medium text-gray-700"
+//               >
+//                 StateID
+//               </label>
+//               <input
+//                 type="number"
+//                 id="StateID"
+//                 name="StateID"
+//                 value={formData.StateID || ""}
+//                 onChange={handleFormChange}
+//                 required
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Zip Code */}
+//             <div>
+//               <label
+//                 htmlFor="ZipCode"
+//                 className="block text-sm font-medium text-gray-700"
+//               >
+//                 Zip Code
+//               </label>
+//               <input
+//                 type="text"
+//                 id="ZipCode"
+//                 name="ZipCode"
+//                 value={formData.ZipCode || ""}
+//                 onChange={handleFormChange}
+//                 required
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Role ID */}
+//             <div>
+//               <label
+//                 htmlFor="RoleID"
+//                 className="block text-sm font-medium text-gray-700"
+//               >
+//                 Role ID
+//               </label>
+//               <input
+//                 type="text"
+//                 id="RoleID"
+//                 name="RoleID"
+//                 value={formData.RoleID || ""}
+//                 onChange={handleFormChange}
+//                 required
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Profile Image */}
+//             <div>
+//               <label
+//                 htmlFor="ProfileImage"
+//                 className="block text-sm font-medium text-gray-700"
+//               >
+//                 Profile Image
+//               </label>
+//               <input
+//                 type="file"
+//                 id="ProfileImage"
+//                 name="ProfileImage"
+//                 accept="image/*"
+//                 onChange={handleImageChange}
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               />
+//             </div>
+
+//             {/* Comments */}
+//             <div className="sm:col-span-1">
+//               <label
+//                 htmlFor="Comments"
+//                 className="block text-sm font-medium text-gray-700"
+//               >
+//                 Comments
+//               </label>
+//               <textarea
+//                 id="Comments"
+//                 name="Comments"
+//                 value={formData.Comments || ""}
+//                 onChange={handleFormChange}
+//                 rows={3}
+//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+//               ></textarea>
+//             </div>
+//           </div>
+
+//           {/* Buttons */}
+//           <div className="px-4 py-3 text-right sm:px-6">
+//             <button
+//               type="submit"
+//               className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+//             >
+//               {isEditMode ? "Update User" : "Create User"}
+//             </button>
+//             <button
+//               type="button"
+//               onClick={handleCancel}
+//               className="ml-3 inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+//             >
+//               Cancel
+//             </button>
+//           </div>
+//         </form>
+//       </div>
+//     </div>
+//   );
+// }
+// export default Userform;
+
+
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
+import { UserContext } from "../../Context/userContext";
 
 function Userform() {
   const navigate = useNavigate();
   const location = useLocation();
   const { userDetails } = useContext(UserContext);
 
-  // Determine if in edit mode (only if user data exists)
-  const isEditMode = Boolean(location.state?.userDetails?.user || userDetails?.user);
+  const isEditMode = Boolean(
+    location.state?.userDetails?.user || userDetails?.user
+  );
 
-  const [formData, setFormData] = useState(location.state?.userDetails || {
-    TenantID: 1,
-    EmployeeID: "1210",
-    FirstName: "",
-    LastName: "",
-    Email: "",
-    Password: "",  
-    PhoneNumber: "",
-    Gender: "",
-    RoleID: "",
-    AddressLine1: "",
-    AddressLine2: "",
-    CityID : "",
-    StateID:  Number(""),
-    CountryID:5,
-    ZipCode: "",
-    ProfileImg: "",
-    Comments: "",
-    
-  });
+  const [formData, setFormData] = useState(
+    location.state?.userDetails || {
+      TenantID: 1,
+      FirstName: "",
+      LastName: "",
+      Email: "",
+      Password: "",
+      PhoneNumber: "",
+      Gender: "",
+      RoleID: "",
+      AddressLine1: "",
+      AddressLine2: "",
+      CityID: "",
+      StateID: "",
+      CountryID: 5,
+      ZipCode: "",
+      ProfileImage: null, // Change to null initially
+      Comments: "",
+    }
+  );
 
   useEffect(() => {
     if (isEditMode) {
-      setFormData({
-        FirstName: "",
-        LastName: "",
-        Email: "",
-        PhoneNumber: "",
-        Gender: "",
-        RoleID: "",
-        AddressLine1: "",
-        AddressLine2: "",
-        CityID:Number(""),
-        StateID:Number(""),
-        CountryID:5,
-        ZipCode: "",
-        ProfileImg: "",
-        Comments: "",
-        Password: "", 
-      });
-    }
-  }, [isEditMode]);
-
-  useEffect(() => {
-    if (!isEditMode) return;
-    
-    const user = location.state?.userDetails?.user || userDetails?.user;
-    if (user) {
-      setFormData({
-        FirstName: user.FirstName || "",
-        LastName: user.LastName || "",
-        Email: user.Email || "",
-        PhoneNumber: user.PhoneNumber || "",
-        Gender: user.Gender || "",
-        RoleID: user.RoleID || "",
-        AddressLine1: user.AddressLine1 || "",
-        AddressLine2: user.AddressLine2 || "",
-        CityID: user.CityID ||  Number(""),
-        StateID: user.StateID ||  Number(""),
-        ZipCode: user.ZipCode || "",
-        ProfileImg: user.ProfileImg || "",
-        Comments: user.Comments || "",
-        UserID: user.UserID || "",
-        Password: user.Password || "", 
-      });
+      const user = location.state?.userDetails?.user || userDetails?.user;
+      if (user) {
+        setFormData({
+          FirstName: user.FirstName || "",
+          LastName: user.LastName || "",
+          Email: user.Email || "",
+          PhoneNumber: user.PhoneNumber || "",
+          Gender: user.Gender || "",
+          RoleID: user.RoleID || "",
+          ProfileImage: null, // Reset to null if editing
+          Comments: user.Comments || "",
+          UserID: user.UserID || "",
+          Password: user.Password || "",
+          AddressLine1: user.Address?.AddressLine1 || "",
+          AddressLine2: user.Address?.AddressLine2 || "",
+          CityID: user.Address?.CityID || "",
+          StateID: user.Address?.StateID || "",
+          CountryID: user.Address?.CountryID || "",
+          ZipCode: user.Address?.ZipCode || "",
+        });
+      }
     }
   }, [isEditMode, location.state?.userDetails?.user, userDetails?.user]);
 
@@ -5574,27 +6600,39 @@ function Userform() {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData({
-          ...formData,
-          ProfileImg: reader.result,  
-        });
-      };
-      reader.readAsDataURL(file);
+      setFormData({
+        ...formData,
+        ProfileImage: file, // Save the file object directly
+      });
     }
   };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      console.log("Submitted details:", formData);
+      const formDataToSend = new FormData();
+      Object.keys(formData).forEach((key) => {
+        if (key === "ProfileImage" && formData[key]) {
+          formDataToSend.append("ProfileImage", formData[key]);
+        } else {
+          formDataToSend.append(key, formData[key]);
+        }
+      });
 
       const response = await axios.post(
         "https://imlystudios-backend-mqg4.onrender.com/api/users/createUser",
-        formData
+        formDataToSend,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       console.log("Submission successful:", response.data);
+
+      // Handle response to get the filename
+      const { filename } = response.data; 
+      console.log(`File uploaded successfully: ${filename}`);
 
       navigate("/user");
     } catch (error) {
@@ -5611,19 +6649,43 @@ function Userform() {
         return;
       }
 
-      console.log("Submitted details for update:", formData);
+      const formDataToSend = new FormData();
+      Object.keys(formData).forEach((key) => {
+        if (key === "ProfileImage" && formData[key]) {
+          formDataToSend.append("ProfileImage", formData[key]);
+        } else {
+          formDataToSend.append(key, formData[key]);
+        }
+      });
 
       const response = await axios.put(
         `https://imlystudios-backend-mqg4.onrender.com/api/users/updateUser/${userId}`,
-        formData
+        formDataToSend,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       console.log("Update successful:", response.data);
+
+      // Handle response to get the filename
+      const { filename } = response.data; 
+
+      console.log(`File updated successfully: ${filename}`);
+
       navigate("/user");
     } catch (error) {
       if (error.response) {
-        console.error("Update failed with response error:", error.response.data);
+        console.error(
+          "Update failed with response error:",
+          error.response.data
+        );
       } else if (error.request) {
-        console.error("Update failed with no response received:", error.request);
+        console.error(
+          "Update failed with no response received:",
+          error.request
+        );
       } else {
         console.error("Update failed with error:", error.message);
       }
@@ -5642,10 +6704,14 @@ function Userform() {
             <h2 className="text-xl font-semibold mb-4 px-24">Users</h2>
           </div>
           <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8 px-16 md:px-24">
-            {/* First Name */}
-            <div className="flex items-center">
-              <div className="w-full">
-                <label htmlFor="FirstName" className="block text-sm font-medium text-gray-700">
+  
+                    {/* First Name */}
+             <div className="flex items-center">
+               <div className="w-full">
+                 <label
+                  htmlFor="FirstName"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   First Name
                 </label>
                 <input
@@ -5663,7 +6729,10 @@ function Userform() {
             {/* Address Line 1 */}
             <div className="flex items-center">
               <div className="w-full">
-                <label htmlFor="AddressLine1" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="AddressLine1"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Address Line 1
                 </label>
                 <input
@@ -5680,7 +6749,10 @@ function Userform() {
 
             {/* Last Name */}
             <div>
-              <label htmlFor="LastName" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="LastName"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Last Name
               </label>
               <input
@@ -5696,7 +6768,10 @@ function Userform() {
 
             {/* Address Line 2 */}
             <div>
-              <label htmlFor="AddressLine2" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="AddressLine2"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Address Line 2
               </label>
               <input
@@ -5711,7 +6786,10 @@ function Userform() {
 
             {/* Email */}
             <div>
-              <label htmlFor="Email" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="Email"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Email
               </label>
               <input
@@ -5727,7 +6805,10 @@ function Userform() {
 
             {/* Password */}
             <div>
-              <label htmlFor="Password" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="Password"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Password
               </label>
               <input
@@ -5742,7 +6823,10 @@ function Userform() {
 
             {/* City */}
             <div>
-              <label htmlFor="CityID" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="CityID"
+                className="block text-sm font-medium text-gray-700"
+              >
                 CityID
               </label>
               <input
@@ -5758,7 +6842,10 @@ function Userform() {
 
             {/* Phone Number */}
             <div>
-              <label htmlFor="PhoneNumber" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="PhoneNumber"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Phone Number
               </label>
               <input
@@ -5773,8 +6860,11 @@ function Userform() {
             </div>
 
             {/* Gender */}
-            {/* <div>
-              <label htmlFor="Gender" className="block text-sm font-medium text-gray-700">
+            <div>
+              <label
+                htmlFor="Gender"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Gender
               </label>
               <select
@@ -5786,31 +6876,17 @@ function Userform() {
                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               >
                 <option value="">Select Gender</option>
-                <option value="Male">M</option>
-                <option value="Female">F</option>
-              
+                <option value="M">M</option>
+                <option value="F">F</option>
               </select>
-            </div> */}
-
-<div>
-  <label htmlFor="Gender" className="block text-sm font-medium text-gray-700">
-    Gender
-  </label>
-  <input
-    type="text"
-    id="Gender"
-    name="Gender"
-    value={formData.Gender || ""}
-    onChange={handleFormChange}
-    required
-    className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-  />
-</div>
-
+            </div>
 
             {/* State */}
             <div>
-              <label htmlFor="StateID" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="StateID"
+                className="block text-sm font-medium text-gray-700"
+              >
                 StateID
               </label>
               <input
@@ -5823,11 +6899,13 @@ function Userform() {
                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               />
             </div>
-          
 
             {/* Zip Code */}
             <div>
-              <label htmlFor="ZipCode" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="ZipCode"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Zip Code
               </label>
               <input
@@ -5843,7 +6921,10 @@ function Userform() {
 
             {/* Role ID */}
             <div>
-              <label htmlFor="RoleID" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="RoleID"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Role ID
               </label>
               <input
@@ -5859,13 +6940,16 @@ function Userform() {
 
             {/* Profile Image */}
             <div>
-              <label htmlFor="ProfileImg" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="ProfileImage"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Profile Image
               </label>
               <input
                 type="file"
-                id="ProfileImg"
-                name="ProfileImg"
+                id="ProfileImage"
+                name="ProfileImage"
                 accept="image/*"
                 onChange={handleImageChange}
                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -5874,7 +6958,10 @@ function Userform() {
 
             {/* Comments */}
             <div className="sm:col-span-1">
-              <label htmlFor="Comments" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="Comments"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Comments
               </label>
               <textarea
@@ -5909,410 +6996,4 @@ function Userform() {
     </div>
   );
 }
-
 export default Userform;
-
-
-// import React, { useState, useEffect, useContext } from 'react';
-// import axios from 'axios';
-// import { useNavigate, useLocation } from 'react-router-dom';
-// import { UserContext } from '../../Context/userContext';
-
-// function Userform() {
-//   const navigate = useNavigate();
-//   const location = useLocation();
-//   const { userDetails } = useContext(UserContext);
-
-//   // Determine if in edit mode (only if user data exists)
-//   const isEditMode = Boolean(location.state?.userDetails?.user || userDetails?.user);
-
-//   const [formData, setFormData] = useState(location.state?.userDetails || {
-//     TenantID: 1,
-//     EmployeeID: 121,
-//     FirstName: "",
-//     LastName: "",
-//     Email: "",
-//     Password: "",  
-//     PhoneNumber: "",
-//     Gender: "",
-//     AddressLine1: "",
-//     AddressLine2: "",
-//     CityID: 0,
-//     StateID: "",
-//     CountryID: 1,
-//     ZipCode: "",
-//     RoleID: "",
-//     ProfileImg: "",
-//     Comments: "",
-   
-//   });
-
-//   const [loading, setLoading] = useState(false);
-//   const [error, setError] = useState("");
-
-//   useEffect(() => {
-//     if (isEditMode) {
-//       const user = location.state?.userDetails?.user || userDetails?.user;
-//       if (user) {
-//         setFormData({
-//           TenantID: user.TenantID || 1,
-//           EmployeeID: user.EmployeeID || 121,
-//           FirstName: user.FirstName || "",
-//           LastName: user.LastName || "",
-//           Email: user.Email || "",
-//           Password: "",  // Clear password if in edit mode
-//           PhoneNumber: user.PhoneNumber || "",
-//           Gender: user.Gender || "",
-//           AddressLine1: user.AddressLine1 || "",
-//           AddressLine2: user.AddressLine2 || "",
-//           CityID: user.CityID || 0,
-//           StateID: user.StateID || "",
-//           CountryID: user.CountryID || 1,
-//           ZipCode: user.ZipCode || "",
-//           RoleID: user.RoleID || "",
-//           ProfileImg: user.ProfileImg || "",
-//           Comments: user.Comments || "",
-        
-//         });
-//       }
-//     }
-//   }, [isEditMode, location.state?.userDetails?.user, userDetails?.user]);
-
-//   const handleFormChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData({
-//       ...formData,
-//       [name]: value,
-//     });
-//   };
-
-//   const handleImageChange = (e) => {
-//     const file = e.target.files[0];
-//     if (file) {
-//       const reader = new FileReader();
-//       reader.onloadend = () => {
-//         setFormData({
-//           ...formData,
-//           ProfileImg: reader.result,  
-//         });
-//       };
-//       reader.readAsDataURL(file);
-//     }
-//   };
-
-//   const handleFormSubmit = async (event) => {
-//     event.preventDefault();
-//     try {
-//       console.log("Submitted details:", formData);
-
-//       const response = await axios.post(
-//         "https://imlystudios-backend-mqg4.onrender.com/api/users/createUser",
-//         formData
-//       );
-//       console.log("Submission successful:", response.data);
-//       navigate("/user");
-//     } catch (error) {
-//       console.error("Submission failed:", error);
-//     }
-//   };
-
-//   const handleUpdateSubmit = async (event) => {
-//     event.preventDefault();
-//     try {
-//       const userId = formData.EmployeeID;
-//       if (!userId) {
-//         console.error("Employee ID is missing in formData");
-//         return;
-//       }
-
-//       console.log("Submitted details for update:", formData);
-
-//       const response = await axios.put(
-//         `https://imlystudios-backend-mqg4.onrender.com/api/users/updateUser/${userId}`,
-//         formData
-//       );
-//       console.log("Update successful:", response.data);
-//       navigate("/user");
-//     } catch (error) {
-//       if (error.response) {
-//         console.error("Update failed with response error:", error.response.data);
-//       } else if (error.request) {
-//         console.error("Update failed with no response received:", error.request);
-//       } else {
-//         console.error("Update failed with error:", error.message);
-//       }
-//     }
-//   };
-
-//   const handleCancel = () => {
-//     navigate("/user");
-//   };
-
-//   return (
-//     <div className="px-4 sm:px-6 lg:px-8 pt-4 ml-10 lg:ml-72 w-auto">
-//       <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
-//         <form onSubmit={isEditMode ? handleUpdateSubmit : handleFormSubmit}>
-//           <div className="flex justify-between items-center mb-6">
-//             <h2 className="text-xl font-semibold mb-4 px-24">Users</h2>
-//           </div>
-//           <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8 px-16 md:px-24">
-//             {/* First Name */}
-//             <div className="flex items-center">
-//               <div className="w-full">
-//                 <label htmlFor="FirstName" className="block text-sm font-medium text-gray-700">
-//                   First Name
-//                 </label>
-//                 <input
-//                   type="text"
-//                   id="FirstName"
-//                   name="FirstName"
-//                   value={formData.FirstName || ""}
-//                   onChange={handleFormChange}
-//                   required
-//                   className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-//                 />
-//               </div>
-//             </div>
-
-//             {/* Address Line 1 */}
-//             <div className="flex items-center">
-//               <div className="w-full">
-//                 <label htmlFor="AddressLine1" className="block text-sm font-medium text-gray-700">
-//                   Address Line 1
-//                 </label>
-//                 <input
-//                   type="text"
-//                   id="AddressLine1"
-//                   name="AddressLine1"
-//                   value={formData.AddressLine1 || ""}
-//                   onChange={handleFormChange}
-//                   required
-//                   className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-//                 />
-//               </div>
-//             </div>
-
-//             {/* Last Name */}
-//             <div>
-//               <label htmlFor="LastName" className="block text-sm font-medium text-gray-700">
-//                 Last Name
-//               </label>
-//               <input
-//                 type="text"
-//                 id="LastName"
-//                 name="LastName"
-//                 value={formData.LastName || ""}
-//                 onChange={handleFormChange}
-//                 required
-//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-//               />
-//             </div>
-
-//             {/* Address Line 2 */}
-//             <div>
-//               <label htmlFor="AddressLine2" className="block text-sm font-medium text-gray-700">
-//                 Address Line 2
-//               </label>
-//               <input
-//                 type="text"
-//                 id="AddressLine2"
-//                 name="AddressLine2"
-//                 value={formData.AddressLine2 || ""}
-//                 onChange={handleFormChange}
-//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-//               />
-//             </div>
-
-//             {/* Email */}
-//             <div>
-//               <label htmlFor="Email" className="block text-sm font-medium text-gray-700">
-//                 Email
-//               </label>
-//               <input
-//                 type="email"
-//                 id="Email"
-//                 name="Email"
-//                 value={formData.Email || ""}
-//                 onChange={handleFormChange}
-//                 required
-//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-//               />
-//             </div>
-
-//             {/* Password */}
-//             <div>
-//               <label htmlFor="Password" className="block text-sm font-medium text-gray-700">
-//                 Password
-//               </label>
-//               <input
-//                 id="Password"
-//                 name="Password"
-//                 type="password"
-//                 value={formData.Password || ""}
-//                 onChange={handleFormChange}
-//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-//               />
-//             </div>
-
-//               {/* Phone Number */}
-//               <div>
-//               <label htmlFor="PhoneNumber" className="block text-sm font-medium text-gray-700">
-//                 Phone Number
-//               </label>
-//               <input
-//                 type="text"
-//                 id="PhoneNumber"
-//                 name="PhoneNumber"
-//                 value={formData.PhoneNumber || ""}
-//                 onChange={handleFormChange}
-//                 required
-//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-//               />
-//             </div>
-
-//             {/* City */}
-//             <div>
-//               <label htmlFor="CityID" className="block text-sm font-medium text-gray-700">
-//                 CityID
-//               </label>
-//               <input
-//                 type="number"
-//                 id="CityID"
-//                 name="CityID"
-//                 value={formData.CityID || ""}
-//                 onChange={handleFormChange}
-//                 required
-//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-//               />
-//             </div>
-
-//             {/* State */}
-//             <div>
-//               <label htmlFor="StateID" className="block text-sm font-medium text-gray-700">
-//                 StateID
-//               </label>
-//               <input
-//                 type="text"
-//                 id="StateID"
-//                 name="StateID"
-//                 value={formData.StateID || ""}
-//                 onChange={handleFormChange}
-//                 required
-//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-//               />
-//             </div>
-
-//             {/* ZipCode */}
-//             <div>
-//               <label htmlFor="ZipCode" className="block text-sm font-medium text-gray-700">
-//                 ZipCode
-//               </label>
-//               <input
-//                 type="text"
-//                 id="ZipCode"
-//                 name="ZipCode"
-//                 value={formData.ZipCode || ""}
-//                 onChange={handleFormChange}
-//                 required
-//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-//               />
-//             </div>
-
-
-//                         {/* Gender */}
-//                         <div>
-//               <label htmlFor="Gender" className="block text-sm font-medium text-gray-700">
-//                 Gender
-//               </label>
-//               <select
-//                 id="Gender"
-//                 name="Gender"
-//                 value={formData.Gender || ""}
-//                 onChange={handleFormChange}
-//                 required
-//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-//               >
-//                 <option value="">Select Gender</option>
-//                 <option value="Male">Male</option>
-//                 <option value="Female">Female</option>
-//                 <option value="Other">Other</option>
-//               </select>
-//             </div>
-
-
-//             {/* Role */}
-//             <div>
-//               <label htmlFor="RoleID" className="block text-sm font-medium text-gray-700">
-//                 RoleID
-//               </label>
-//               <input
-//                 type="text"
-//                 id="RoleID"
-//                 name="RoleID"
-//                 value={formData.RoleID || ""}
-//                 onChange={handleFormChange}
-//                 required
-//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-//               />
-//             </div>
-
-//             {/* Profile Image */}
-//             <div>
-//               <label htmlFor="ProfileImg" className="block text-sm font-medium text-gray-700">
-//                 Profile Image
-//               </label>
-//               <input
-//                 type="file"
-//                 id="ProfileImg"
-//                 name="ProfileImg"
-//                 onChange={handleImageChange}
-//                 className="mt-1 block w-full border border-gray-400 py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-//               />
-//               {formData.ProfileImg && (
-//                 <img
-//                   src={formData.ProfileImg}
-//                   alt="Profile"
-//                   className="mt-4 max-w-xs rounded-md"
-//                 />
-//               )}
-//             </div>
-
-//             {/* Comments */}
-//             <div>
-//               <label htmlFor="Comments" className="block text-sm font-medium text-gray-700">
-//                 Comments
-//               </label>
-//               <textarea
-//                 id="Comments"
-//                 name="Comments"
-//                 value={formData.Comments || ""}
-//                 onChange={handleFormChange}
-//                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-//               />
-//             </div>
-
-         
-//           </div>
-
-//           <div className="flex justify-end mt-6">
-//             <button
-//               type="submit"
-//               className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-//             >
-//               {isEditMode ? 'Update User' : 'Create User'}
-//             </button>
-//             <button
-//               type="button"
-//               onClick={handleCancel}
-//               className="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
-//             >
-//               Cancel
-//             </button>
-//           </div>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Userform;

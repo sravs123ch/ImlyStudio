@@ -37,6 +37,7 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+
   return (
     <UserContext.Provider value={{ userDetails, setUserDetails, getUserById }}>
       {children}

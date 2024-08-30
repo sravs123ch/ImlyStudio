@@ -5330,7 +5330,6 @@ import { FaFilter } from 'react-icons/fa';
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
 import { IoIosSearch } from "react-icons/io";
 import axios from "axios";
-// import {UseContext } from '../../Context/userContext';
 import { UserContext } from '../../Context/userContext';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -5424,57 +5423,12 @@ function User() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [searchName, setSearchName] = useState("");
-  const [searchEmail, setSearchEmail] = useState("");
+  // const [searchEmail, setSearchEmail] = useState("");
 
   const [users, setUsers] = useState([]);
 
 
   const navigate = useNavigate();
-
-  // // Handle form changes
-  // const handleFormChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData({
-  //     ...formData,
-  //     [name]: value,
-  //   });
-  // };
-
-  // // Handle image upload
-  // const handleImageChange = (e) => {
-  //   const file = e.target.files[0];
-  //   if (file) {
-  //     const reader = new FileReader();
-  //     reader.onloadend = () => {
-  //       setFormData({
-  //         ...formData,
-  //         profileImg: reader.result,
-  //       });
-  //     };
-  //     reader.readAsDataURL(file);
-  //   }
-  // };
-
-// const [formData, setFormData] = useState({
-//   TenantID: 1,
-//   AddressID: "",
-//   EmployeeID:"121",
-//   FirstName: "",
-//   LastName: "",
-//   Email: "",
-//   Password: "", 
-//   PhoneNumber: "", 
-//   Gender: "",
-//   AddressLine1: "",
-//   AddressLine2: "",
-//   CityID: 0,
-//   StateID: 0,
-//   CoutntryID:5,
-//   ZipCode: "",
-//   RoleID: "",
-//   ProfileImg: "",
-//   Comments: "",
-// });
 
 // Your getAllUsers function
 const getAllUsers = async () => {
@@ -5562,6 +5516,7 @@ const updateUserById = async (userId, updatedData) => {
 
 const { setUserDetails } = useContext(UserContext);
 
+
 const handleEditClick = async (index) => {
   const realIndex = page * rowsPerPage + index;
   const userId = users[realIndex].UserID;
@@ -5588,7 +5543,7 @@ const handleSaveChanges = async (updatedData) => {
 
   try {
     await updateUserById(userId, updatedData); // Update the user via API
-    
+   
     // Update the user in the local state
     const updatedUsers = users.map((user, index) =>
       index === editingIndex ? { ...user, ...updatedData } : user
@@ -5637,12 +5592,6 @@ useEffect(() => {
   fetchUsers();
 }, []);
 
-  // // Handle cancel button click
-  // const handleCancel = () => {
-  //   setFormData(null);
-  //   setEditingIndex(null);
-  //   // setIsFormVisible(false);
-  // };
 
   //   // Example if using useState
 const [paginatedPeople, setPaginatedPeople] = useState([]);
@@ -5667,38 +5616,16 @@ const [paginatedPeople, setPaginatedPeople] = useState([]);
   }, [users, page, rowsPerPage]);
   
 
-
     // const handleAddUserClick = () => {
-    //   navigate('/userform'); // Navigate to the UserForm route
+    //   // Navigate to the UserForm route
+    //   navigate('/userform');
     // };
-
     const handleAddUserClick = () => {
-    //   // Clear form data before navigating to the user form
-    //   setFormData({
-    //     TenantID: 1,
-    //     AddressID: "",
-    //     EmployeeID:"121",
-    //     FirstName: "",
-    //     RoleID: '',
-    //     LastName: "",
-    //     Email: "",
-    //     Password: "", 
-    //     PhoneNumber: "", 
-    //     Gender: "",
-    //     AddressLine1: "",
-    //     AddressLine2: "",
-    //     CityID: 0,
-    //     StateID: 0,
-    //     CountryID:5,
-    //     ZipCode: "",
-    //     ProfileImg: "",
-    //     Comments: "",
-        
-    //   });
-    
-      // Navigate to the UserForm route
+      // Clear the user details before navigating
+      setUserDetails(null); // Assuming setUserDetails is a method from UserContext to clear user details
       navigate('/userform');
     };
+    
     
   return (
     <div className="px-4 sm:px-6 lg:px-8 pt-4 ml-10 lg:ml-72 w-auto">
@@ -5764,20 +5691,25 @@ const [paginatedPeople, setPaginatedPeople] = useState([]);
           {paginatedUsers.map((person, index) => (
             <StyledTableRow key={index}>
               <StyledTableCell>
-                <div className="flex items-center space-x-2">
-                  <Avatar src={person.profileImg} />
-                  <span>{person.FirstName}</span>
-                  <span>{person.LastName}</span>
-                </div>
+                  <div className="flex items-center space-x-2">
+      <img
+        src={person.ProfileImage}
+        alt="Profile"
+        className="h-24 w-24 rounded-full object-cover"
+      />
+      <span>{person.FirstName}</span>
+      <span>{person.LastName}</span>
+    </div>
               </StyledTableCell>
               <StyledTableCell>{person.Email}</StyledTableCell>
               <StyledTableCell>{person.PhoneNumber}</StyledTableCell>
-              <StyledTableCell>{person.AddressID}
-                {/* {person.AddressLine1}
-                {person.AddressLine2 && `, ${person.AddressLine2}`}
-                <br />
-                {person.City}, {person.State}, {person.ZipCode} */}
-              </StyledTableCell>
+              <StyledTableCell>
+  {person.Address?.AddressLine1}
+  {person.Address?.AddressLine2 && `, ${person.Address.AddressLine2}`}
+  <br />
+  {person.Address?.CityID}, {person.Address?.StateID}, {person.Address?.ZipCode}
+</StyledTableCell>
+
               <StyledTableCell>
                 <span
                   className={`inline-block px-3 py-2 text-xs font-semibold rounded-full ${
@@ -5825,12 +5757,12 @@ const [paginatedPeople, setPaginatedPeople] = useState([]);
               count={users.length}
               rowsPerPage={rowsPerPage}
               page={page}
-              SelectProps={{
-                inputProps: {
-                  "aria-label": "rows per page",
-                },
-                native: true,
-              }}
+              // SelectProps={{
+              //   inputProps: {
+              //     "aria-label": "rows per page",
+              //   },
+              //   native: true,
+              // }}
               onPageChange={handleChangePage}
               onRowsPerPageChange={handleChangeRowsPerPage}
               ActionsComponent={TablePaginationActions}

@@ -275,7 +275,7 @@ function Storeform() {
   
   });
 
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -299,6 +299,7 @@ function Storeform() {
         Email: store.Email || "",
         Phone: store.Phone || "",
         Password: store.Password || "",  // Include password for edit mode
+        StoreID: store.StoreID || "",
       });
     }
   }, [isEditMode, location.state?.storeDetails?.store, storeDetails?.store]);
@@ -332,6 +333,8 @@ function Storeform() {
     event.preventDefault();
     try {
       const storeId = formData.StoreID; // Assuming `StoreID` is used for updates
+console.log(storeId)
+
       if (!storeId) {
         console.error("Store ID is missing in formData");
         return;
