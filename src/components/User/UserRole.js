@@ -1362,6 +1362,8 @@ function UserRoleForm() {
             />
           </TableContainer>
         </div>
+
+        
       ) : (
         <div className="mt-6 bg-white p-6 rounded-lg shadow-md max-w-[60%] sm:ml-16 lg:ml-72">
           <h2 className="text-xl font-semibold">{editingIndex !== null ? "Edit Role" : "Add New Role"}</h2>

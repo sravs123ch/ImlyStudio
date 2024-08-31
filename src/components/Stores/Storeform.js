@@ -266,40 +266,28 @@ function Storeform() {
   const isEditMode = Boolean(location.state?.storeDetails?.store || storeDetails?.store);
 
   const [formData, setFormData] = useState(location.state?.storeDetails || {
-    TenantID: 1,
-    StoreID:2,
+    TenantID: 1,   // Set default value for TenantID
+    StoreID: null, // Set StoreID as null initially
     StoreName: "",
     Email: "",
     Password: "",  // Added Password field to formData
     Phone: "",
-  
+    Address: "",   // Include Address field
   });
 
-  // const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
     if (isEditMode) {
+      const store = location.state?.storeDetails?.store || storeDetails?.store;
       setFormData({
-        StoreName: "",
-        Email: "",
-        Phone: "",
-        Password: "",  // Clear password if in edit mode
-      });
-    }
-  }, [isEditMode]);
-
-  useEffect(() => {
-    if (!isEditMode) return;
-    
-    const store = location.state?.storeDetails?.store || storeDetails?.store;
-    if (store) {
-      setFormData({
+        TenantID: store.TenantID || 1,
+        StoreID: store.StoreID || null,
         StoreName: store.StoreName || "",
         Email: store.Email || "",
         Phone: store.Phone || "",
-        Password: store.Password || "",  // Include password for edit mode
-        StoreID: store.StoreID || "",
+        Password: "",  // Clear password if in edit mode
+        Address: store.Address || "",
       });
     }
   }, [isEditMode, location.state?.storeDetails?.store, storeDetails?.store]);
@@ -322,41 +310,59 @@ function Storeform() {
         formData
       );
       console.log("Submission successful:", response.data);
-      navigate("/store");
+      navigate("/Stores");
     } catch (error) {
       console.error("Submission failed:", error);
-      setError("Failed to create store.");
+      if (error.response) {
+        console.error("Response data:", error.response.data);
+        console.error("Response status:", error.response.status);
+        console.error("Response headers:", error.response.headers);
+        setError("Failed to create store: " + error.response.data.message);
+      } else if (error.request) {
+        console.error("No response received:", error.request);
+        setError("No response received from server.");
+      } else {
+        console.error("Error in setting up request:", error.message);
+        setError("Error: " + error.message);
+      }
     }
   };
 
   const handleUpdateSubmit = async (event) => {
     event.preventDefault();
     try {
-      const storeId = formData.StoreID; // Assuming `StoreID` is used for updates
-console.log(storeId)
-
+      const storeId = formData.StoreID;
+  
+      // Log formData to ensure StoreID is present
+      console.log("FormData before submission:", formData);
+  
       if (!storeId) {
         console.error("Store ID is missing in formData");
+        setError("Store ID is missing.");
         return;
       }
-
+  
       console.log("Submitted details for update:", formData);
-
+  
       const response = await axios.put(
         `https://imlystudios-backend-mqg4.onrender.com/api/stores/updateStore/${storeId}`,
         formData
       );
       console.log("Update successful:", response.data);
+  
       navigate("/Stores");
     } catch (error) {
+      console.error("Update failed:", error);
       if (error.response) {
         console.error("Update failed with response error:", error.response.data);
+        setError("Update failed: " + error.response.data.message);
       } else if (error.request) {
         console.error("Update failed with no response received:", error.request);
+        setError("No response received from server.");
       } else {
         console.error("Update failed with error:", error.message);
+        setError("Error: " + error.message);
       }
-      setError("Failed to update store.");
     }
   };
 
@@ -372,7 +378,7 @@ console.log(storeId)
             <h2 className="text-xl font-semibold mb-4 px-24">Stores</h2>
           </div>
           <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8 px-16 md:px-24">
-            {/* First Name */}
+            {/* Store Name */}
             <div className="flex items-center">
               <div className="w-full">
                 <label htmlFor="StoreName" className="block text-sm font-medium text-gray-700">
@@ -389,7 +395,6 @@ console.log(storeId)
                 />
               </div>
             </div>
-
 
             {/* Email */}
             <div>
@@ -438,8 +443,7 @@ console.log(storeId)
               />
             </div>
 
-
-            {/* Address Line 2 */}
+            {/* Address */}
             <div>
               <label htmlFor="Address" className="block text-sm font-medium text-gray-700">
                 Address
@@ -453,21 +457,20 @@ console.log(storeId)
                 className="mt-1 block w-full rounded-md border border-gray-400 shadow-sm py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               />
             </div>
-
           </div>
 
           {/* Buttons */}
-          <div className="px-4 py-3 text-right sm:px-6">
+          <div className="mt-6 flex justify-end gap-4">
             <button
               type="submit"
-              className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="inline-flex justify-center rounded-md border border-transparent bg-custom-darkblue py-2 px-4 text-sm font-medium text-white hover:text-black shadow-sm hover:bg-custom-lightblue focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
-              {isEditMode ? "Update Store" : "Create Store"}
+              Save
             </button>
             <button
               type="button"
               onClick={handleCancel}
-              className="ml-3 inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="inline-flex justify-center rounded-md border border-transparent bg-red-500 py-2 px-4 text-sm font-medium text-white hover:text-black shadow-sm hover:bg-red-200"
             >
               Cancel
             </button>

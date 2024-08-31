@@ -1459,8 +1459,9 @@ import * as XLSX from "xlsx";
 import PropTypes from "prop-types";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import { IoIosSearch } from "react-icons/io";
+import { FaTable } from "react-icons/fa";
 import axios from "axios";
-import { StoreContext } from '../../Context/storeContext'; // Import StoreContext
+import { StoreContext } from '../../Context/storeContext';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -1569,6 +1570,7 @@ function Stores() {
     const fetchStores = async () => {
       try {
         const storesData = await getAllStores();
+        console.log(storesData)
         setStores(storesData);
       } catch (error) {
         console.error("Failed to fetch stores", error);
@@ -1590,12 +1592,14 @@ function Stores() {
     page * rowsPerPage,
     page * rowsPerPage + rowsPerPage
   );
+  console.log(paginatedStores)
   const emptyRows = rowsPerPage - paginatedStores.length;
 
-  const getStoreById = async (storeId) => {
+  const getStoreById = async (StoreID) => {
     try {
       const response = await axios.get(
-        `https://imlystudios-backend-mqg4.onrender.com/api/stores/getStoreById/${storeId}`
+        
+        `https://imlystudios-backend-mqg4.onrender.com/api/stores/getStoreById/${StoreID}`
       );
       console.log("Store retrieved successfully:", response.data);
       return response.data;
@@ -1604,31 +1608,33 @@ function Stores() {
       throw error;
     }
   };
-// API Call for deleting a store
-const deleteStoreById = async (storeId) => {
+
+// Function to delete a store
+const deleteStoreById = async (StoreID) => {
   try {
     const response = await axios.delete(
-      `https://imlystudios-backend-mqg4.onrender.com/api/stores/updateStore/${storeId}`
+      `https://imlystudios-backend-mqg4.onrender.com/api/stores/deleteStore/${StoreID}`  // Correct URL
     );
     console.log("Store deleted successfully:", response.data);
     return response.data; // Return the response data
   } catch (error) {
-    console.error("Error deleting user:", error);
+    console.error("Error deleting store:", error);
     throw error;
   }
 };
 
-  //  API Call for updating a user
-const updateStoreById = async (storeId, updatedData) => {
+
+  //  API Call for updating a store
+const updateStoreById = async (StoreID, updatedData) => {
   try {
     const response = await axios.put(
-      `https://imlystudios-backend-mqg4.onrender.com/api/stores/updateStore/${storeId}`,
+      `https://imlystudios-backend-mqg4.onrender.com/api/stores/updateStore/${StoreID}`,
       updatedData
     );
     console.log("Store updated successfully:", response.data);
     return response.data; // Return the response data
   } catch (error) {
-    console.error("Error updating user:", error);
+    console.error("Error updating store:", error);
     throw error;
   }
 };
@@ -1637,27 +1643,37 @@ const { setStoreDetails } = useContext(StoreContext);
 
   const handleEditClick = async (index) => {
     const realIndex = page * rowsPerPage + index;
-    const storeId = stores[realIndex].StoreId;
+    const StoreID = stores[realIndex].StoreID;
 
     try {
-      const storeDetails = await getStoreById(storeId); // Use getStoreById from context
-      console.log("Fetched store details:", storeDetails);
+      const storeDetails = await getStoreById(StoreID); // Use getStoreById from context
       setStoreDetails(storeDetails);
       navigate('/Storeform');
     } catch (error) {
       console.error("Error fetching store details:", error);
     }
   };
-
-
+// // API Call for deleting a store
+// const deleteStoreById = async (StoreID) => {
+//   try {
+//     const response = await axios.delete(
+//       `https://imlystudios-backend-mqg4.onrender.com/api/deleteStore/${StoreID}`
+//     );
+//     console.log("User deleted successfully:", response.data);
+//     return response.data; // Return the response data
+//   } catch (error) {
+//     console.error("Error deleting store:", error);
+//     throw error;
+//   }
+// };
   //  Handle save or update action in your form
   const handleSaveChanges = async (updatedData) => {
-    const storeId = stores[editingIndex].StoreID;
+    const StoreID = stores[editingIndex].StoreID;
   
     try {
-      await updateStoreById(storeId, updatedData); // Update the user via API
+      await updateStoreById(StoreID, updatedData); // Update the store via API
       
-      // Update the user in the local state
+      // Update the store in the local state
       const updatedStores = stores.map((store, index) =>
         index === editingIndex ? { ...store, ...updatedData } : store
       );
@@ -1668,24 +1684,51 @@ const { setStoreDetails } = useContext(StoreContext);
     }
   };
 
-  const handleDeleteClick = async (index) => {
-    const realIndex = page * rowsPerPage + index;
-    const storeId = stores[realIndex].StoreID;
+ // Handle delete button click
+ const handleDeleteClick = async (index) => {
+  const realIndex = page * rowsPerPage + index;
 
-    try {
-      await deleteStoreById(storeId); // Use deleteStoreById from context
-      const updatedStores = stores.filter((_, i) => i !== realIndex);
-      setStores(updatedStores);
+  // Log the realIndex and the length of the stores array for debugging
+  console.log("Real index for deletion:", realIndex);
+  console.log("Total number of stores:", stores.length);
 
-      if (updatedStores.length <= page * rowsPerPage && page > 0) {
-        setPage(page - 1);
-      }
-    } catch (error) {
-      console.error("Error deleting store:", error);
+  // Check if realIndex is within the bounds of the stores array
+  if (realIndex < 0 || realIndex >= stores.length) {
+    console.error("Invalid index for deletion:", realIndex);
+    return;
+  }
+
+  const storeToDelete = stores[realIndex];
+
+  // Check if storeToDelete is defined and has a valid StoreID
+  if (!storeToDelete || !storeToDelete.StoreID) {
+    console.error("Store or StoreID is undefined:", storeToDelete);
+    return;
+  }
+
+  const StoreID = storeToDelete.StoreID;
+
+  try {
+    // Perform the delete operation
+    const response = await deleteStoreById(StoreID);
+    console.log("Store deleted successfully:", response);
+
+    // Remove the store from the local state
+    const updatedStores = stores.filter((_, i) => i !== realIndex);
+    setStores(updatedStores);
+
+    // Adjust the page if necessary
+    if (updatedStores.length <= page * rowsPerPage && page > 0) {
+      setPage(page - 1);
     }
-  };
+  } catch (error) {
+    console.error("Error deleting store:", error);
+  }
+};
 
-  // Fetch users on component mount
+
+
+  // Fetch stores on component mount
 useEffect(() => {
   const fetchStores = async () => {
     try {
@@ -1718,57 +1761,59 @@ const [paginatedPeople, setPaginatedPeople] = useState([]);
   }, [stores, page, rowsPerPage]);
 
   const handleAddStoreClick = () => {
-    // Clear the user details before navigating
-    setStoreDetails(null); // Assuming setUserDetails is a method from UserContext to clear user details
+    // Clear the store details before navigating
+    setStoreDetails(null); // Assuming setUserDetails is a method from UserContext to clear store details
     navigate('/Storeform');
   };
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 pt-4 ml-10 lg:ml-72 w-auto">
-      <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
-        <div className="flex justify-between items-center">
-          <h2 className="text-xl font-semibold">Stores</h2>
+    
+        <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
+          <div className="flex justify-between items-center">
+            <h2 className="text-xl font-semibold">Stores</h2>
 
-          <div className="flex items-center space-x-4">
-            <div className="relative flex flex-col w-[20rem] -ml-4">
+            <div className="flex items-center space-x-4">
+          <div className="relative flex flex-col w-[20rem] -ml-4">
               <label htmlFor="searchName" className="text-sm font-medium"></label>
               <input
                 id="searchName"
                 type="text"
-                placeholder="Search by Name or Email"
+                placeholder="Search by Name or Email or Mobile"
                 value={searchName}
                 onChange={(e) => setSearchName(e.target.value)}
                 className="mt-1 p-2 pr-10 border border-gray-300 rounded-md"
               />
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                <IoIosSearch />
+              <IoIosSearch />
               </div>
             </div>
+            </div>
+            <ul className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none flex gap-2 list-none">
+              <li>
+                <button
+                  type="button"
+                  className="inline-flex items-center gap-x-1.5 rounded-md bg-custom-darkblue px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-custom-lightblue hover:text-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+                  onClick={handleAddStoreClick}
+                >
+                  <FaPlus aria-hidden="true" className="-ml-0.5 h-4 w-4" />
+                  Add Stores
+                </button>
+              </li>
+              
+              <li>
+                <button
+                  type="button"
+                  className="inline-flex items-center gap-x-1.5 rounded-md bg-custom-darkblue px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-custom-lightblue hover:text-gray-700"
+                  onClick={handleExportStoresData}
+                >
+                  <FaTable aria-hidden="true" className="-ml-0.5 h-4 w-4" />
+                  Export Stores
+                </button>
+              </li>
+            </ul>
           </div>
-          <ul className="mt-4 sm:ml-16 sm:mt-0 flex space-x-4">
-            <li>
-              <button
-                type="button"
-               
-                className="inline-flex items-center gap-x-1 rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500"
-                onClick={handleAddStoreClick}
-              >
-                <FaPlus aria-hidden="true" className="h-4 w-4" />
-                Add Store
-              </button>
-            </li>
-            <li>
-              <button
-                type="button"
-                onClick={handleExportStoresData}
-                className="inline-flex items-center gap-x-1 rounded-md bg-green-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500"
-              >
-                <FaEdit aria-hidden="true" className="h-4 w-4" />
-                Export to Excel
-              </button>
-            </li>
-          </ul>
-        </div>
+
 
         <TableContainer component={Paper} className="mt-4 rounded-lg shadow">
           <Table>
@@ -1781,22 +1826,32 @@ const [paginatedPeople, setPaginatedPeople] = useState([]);
                 <StyledTableCell>Actions</StyledTableCell>
               </TableRow>
             </TableHead>
-
             <TableBody>
               {paginatedStores.map((row, index) => (
-                <StyledTableRow key={index}>
+                <StyledTableRow key={row.StoreID}>
                   <StyledTableCell>{row.StoreName}</StyledTableCell>
                   <StyledTableCell>{row.Email}</StyledTableCell>
                   <StyledTableCell>{row.Phone}</StyledTableCell>
                   <StyledTableCell>{row.Address}</StyledTableCell>
                   <StyledTableCell>
-                    <IconButton onClick={() => handleEditClick(index)}>
-                      <AiOutlineEdit />
-                    </IconButton>
-                    <IconButton onClick={() => handleDeleteClick(index)}>
-                      <AiOutlineDelete />
-                    </IconButton>
-                  </StyledTableCell>
+                <button
+                  type="button"
+                  onClick={() => handleEditClick(row.StoreID)}
+                  className="inline-flex items-center gap-x-1 rounded-md bg-blue-600 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-blue-500"
+                >
+                  <AiOutlineEdit aria-hidden="true" className="h-4 w-4" />
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleDeleteClick(row.StoreID)}
+                  className="inline-flex items-center gap-x-1 ml-2 rounded-md bg-red-600 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-red-500"
+                >
+                  <AiOutlineDelete aria-hidden="true" className="h-4 w-4" />
+                  Delete
+                </button>
+              </StyledTableCell>
+
                 </StyledTableRow>
               ))}
               {emptyRows > 0 && (
